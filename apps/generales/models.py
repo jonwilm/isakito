@@ -241,7 +241,7 @@ class Videos(Base):
     )
     video = models.FileField(
         'Video',
-        upload_to='media/videos/',
+        upload_to='media/slider-videos/',
         blank=True,
         null=True,
         help_text='Cargar video en servidor (Utilizar como ultima opcion)'
