@@ -35,8 +35,7 @@ DJANGO_APPS = [
 ]
 
 LOCAL_APPS = [
-    'apps.persona',
-    'apps.empresa',
+    'apps.generales',
 ]
 
 THIRDS_APPS = [

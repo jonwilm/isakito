@@ -1,0 +1,213 @@
+.react-tagsinput-div {
+	width: 100%;
+	border: 1px solid darkgrey;
+	padding: 6px;
+}
+
+.react-tagsinput {
+	background-color: #fff;
+	border: 1px solid #ccc;
+	overflow: hidden;
+	padding-left: 5px;
+	padding-top: 5px;
+}
+
+.react-tagsinput--focused {
+	border-color: #a5d24a;
+}
+
+.react-tagsinput-tag {
+	background-color: #cde69c;
+	border-radius: 2px;
+	border: 1px solid #a5d24a;
+	color: #638421;
+	display: inline-block;
+	font-family: sans-serif;
+	font-size: 13px;
+	font-weight: 400;
+	margin-bottom: 5px;
+	margin-right: 5px;
+	padding: 5px;
+}
+
+.react-tagsinput-remove {
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.react-tagsinput-tag a::before {
+	content: " ×";
+}
+
+.react-tagsinput-input {
+	background: transparent;
+	border: 0;
+	color: #777;
+	font-family: sans-serif;
+	font-size: 13px;
+	font-weight: 400;
+	margin-bottom: 6px;
+	margin-top: 1px;
+	outline: none;
+	padding: 5px;
+	width: 100%;
+}
+
+.muestra-forms-adicionales {
+	background-color: #5867dd;
+	color: white;
+	border-radius: 5px;
+	padding: 0px 3px 0px 3px;
+}
+
+.label-error {
+	color: red;
+	font-size: 12px !important;
+	font-weight: bold !important;
+}
+
+.m-badge--amarillo {
+	background-color: rgb(255, 230, 8);
+}
+
+.nuevo-text-break {
+	word-wrap: break-word !important;
+	word-break: break-all !important;
+	overflow-wrap: break-word !important;
+	hyphens: auto !important;
+}
+
+.li-active-lila {
+	color: #ffffff !important;
+	background-color: #5867dd !important;
+    border-color: #5867dd !important;
+}
+
+/* Extra small devices (portrait phones, less than 576px)
+       No media query since this is the default in Bootstrap*/
+@media (max-width: 575px) {
+	.firma {
+		height: 152px;
+	}
+
+	.foto-perfil {
+		height: 249px;
+	}
+
+	.modal-lg {
+		max-width: 575px;
+	}
+
+	.sub-menus-formulario {
+		width: 100%;
+	}
+}
+
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+	.firma {
+		height: 152px;
+	}
+
+	.foto-perfil {
+		height: 312px;
+	}
+
+	.modal-lg {
+		max-width: 600px;
+	}
+}
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+	.firma {
+		height: 152px;
+	}
+
+	.foto-perfil {
+		height: 512px;
+	}
+
+	.modal-lg {
+		max-width: 900px;
+	}
+}
+
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+	.firma {
+		height: 564px;
+	}
+
+	.foto-perfil {
+		height: 512px;
+	}
+
+	.modal-lg {
+		max-width: 900px;
+	}
+}
+
+/* Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+	.firma {
+		height: 152px;
+	}
+
+	.foto-perfil {
+		height: 512px;
+	}
+
+	.modal-lg {
+		max-width: 1000px;
+	}
+}
+
+.my-swal {
+	position: fixed;
+	width: 100%;
+	top: 50%;
+	left: 0;
+	z-index: 1051;
+}
+
+/* ajustar medidas de menus exclusivos de formularios */
+@media (max-width: 520px) {
+}
+
+.foto {
+	width: 52px !important;
+	height: 52px !important;
+}
+
+.firma-formularios {
+	width: 300px !important;
+	height: 80px !important;
+}
+
+.loading-indicator:before {
+	content: "";
+	background: #000000cc;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1060;
+}
+
+.loading-indicator:after {
+	content: "Procesando Información";
+	position: fixed;
+	width: 100%;
+	top: 50%;
+	left: 0;
+	z-index: 1060;
+	color: white;
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.5rem;
+}
+body:not(.modal-open) {
+	padding-right: 0 !important;
+}
