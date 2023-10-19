@@ -93,18 +93,100 @@ class SliderMarca(Base):
             u'<img src="%s" height="75" />' % self.imagen.url)
     show_img.short_description = 'Imagen'
     show_img.allow_tags = True
+
+
+class Producto(Base):
+    sku = models.CharField(
+        'SKU',
+        max_length=20,
+    )
+    titulo = models.CharField(
+        'Titulo',
+        max_length=255,
+    )
+    descripcion = models.TextField(
+        'Descripción',
+    )
+    precio = models.DecimalField(
+        'Precio',
+        max_digits=10,
+        decimal_places=2
+    )
+    ean = models.CharField(
+        'EAN',
+        max_length=20,
+    )
+    categoria = models.CharField(
+        'Categoria',
+        max_length=100,
+    )
+    marca = models.ForeignKey(
+        'Marca',
+        on_delete=models.CASCADE,
+    )
+    stock = models.IntegerField(
+        'Stock',
+        default=0
+    )
+    proveedor = models.CharField(
+        'Proveedor',
+        max_length=255,
+    )
+    alto = models.CharField(
+        'Alto',
+        max_length=255,
+        blank=True,
+        null=True,
+    )
+    ancho = models.CharField(
+        'Ancho',
+        max_length=255,
+        blank=True,
+        null=True,
+    )
+    largo = models.CharField(
+        'Largo',
+        max_length=255,
+        blank=True,
+        null=True,
+    )
+    peso = models.CharField(
+        'Peso',
+        max_length=255,
+        blank=True,
+        null=True,
+    )
+    video = models.URLField(
+        'Url del video',
+        blank=True,
+        null=True,
+    )
+    edad = models.CharField(
+        'Edad',
+        max_length=20,
+        blank=True,
+        null=True,
+    )
+    puntos_venta = models.CharField(
+        'Donde comprar',
+        max_length=255,
+        blank=True,
+        null=True,
+    )
     
+    class Meta():
+        verbose_name = 'Producto'
+        verbose_name_plural = 'Productos'
 
-
-def generate_path_producto(instance, filename):
-    return os.path.join("media", str(instance.titulo).replace(' ', '_'), filename)
+    def __str__(self):
+        return str(self.imagen)
 
 
 class ImagenesProducto(Base):
-    # marca = models.ForeignKey(
-    #     Marca,
-    #     on_delete=models.CASCADE,
-    # )
+    producto = models.ForeignKey(
+        Producto,
+        on_delete=models.CASCADE,
+    )
     imagen = models.URLField(
         'Url de la Imagen',
     )
