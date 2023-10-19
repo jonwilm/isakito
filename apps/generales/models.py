@@ -5,7 +5,7 @@ from apps.automatic_crud.models import BaseModel as Base
 
 class Logo(Base):
     logo = models.FileField(
-        'Url',
+        'Logo',
         upload_to='media/logos/',
         help_text='Logo de Isakito'
     )
@@ -31,7 +31,7 @@ class Logo(Base):
 
     def show_img(self):
         return mark_safe(
-            u'<img src="%s" width="100" />' % self.logo.url)
+            u'<img src="%s" height="75" />' % self.logo.url)
     show_img.short_description = 'Logo'
     show_img.allow_tags = True
 
@@ -178,7 +178,7 @@ class SliderHome(Base):
 
     def show_img(self):
         return mark_safe(
-            u'<img src="%s" width="100" />' % self.imagen.url)
+            u'<img src="%s" height="75" />' % self.imagen.url)
     show_img.short_description = 'Imagen'
     show_img.allow_tags = True
 

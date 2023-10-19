@@ -36,6 +36,7 @@ DJANGO_APPS = [
 
 LOCAL_APPS = [
     'apps.generales',
+    'apps.productos',
 ]
 
 THIRDS_APPS = [

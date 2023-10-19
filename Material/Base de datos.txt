@@ -36,7 +36,7 @@ GENERALES
         - Titulo
         - Url o Codigo
 
-MARCAS
+PRODUCTOS
     M - Marca
         - Nombre
         - Logo
@@ -49,7 +49,6 @@ MARCAS
         - Imagen
         - Activo
 
-PRODUCTOS
     M - Producto
         - SKU
         - Titulo
