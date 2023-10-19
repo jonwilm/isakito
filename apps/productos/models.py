@@ -43,7 +43,61 @@ class Marca(Base):
 
 
 def generate_path_marca(instance, filename):
-    return os.path.join("media", str(instance.marca.nombre).replace(' ', '_'), filename)
+    return os.path.join("media/marcas", str(instance.marca.nombre).replace(' ', '_'), filename)
+
+
+class SliderMarca(Base):
+    marca = models.ForeignKey(
+        Marca,
+        on_delete=models.CASCADE,
+    )
+    titulo = models.CharField(
+        'Título',
+        max_length=150,
+        blank=True,
+        null=True,
+        help_text='Titulo de la imagen'
+    )
+    imagen = models.ImageField(
+        'Imagen',
+        upload_to=generate_path_marca,
+        help_text='Imagen para el Slider de la Marca'
+    )
+    orden = models.IntegerField(
+        'Orden',
+        blank=True,
+        null=True,
+        help_text='Orden en que aparecen las imagenes en el slider'
+    )
+    enlace = models.URLField(
+        'Enlace Destino',
+        blank=True,
+        null=True,
+        help_text='Url de la pagina destino al hacer click'
+    )
+    activo = models.BooleanField(
+        'Activo',
+        default=True,
+        help_text='Activar para mostrar'
+    )
+
+    class Meta():
+        verbose_name = 'Slider Marca'
+        verbose_name_plural = 'Slider Marca'
+
+    def __str__(self):
+        return str(self.imagen)
+
+    def show_img(self):
+        return mark_safe(
+            u'<img src="%s" height="75" />' % self.imagen.url)
+    show_img.short_description = 'Imagen'
+    show_img.allow_tags = True
+    
+
+
+def generate_path_producto(instance, filename):
+    return os.path.join("media", str(instance.titulo).replace(' ', '_'), filename)
 
 
 class SliderMarca(Base):
