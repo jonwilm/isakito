@@ -173,6 +173,11 @@ class Producto(Base):
         blank=True,
         null=True,
     )
+    activo = models.BooleanField(
+        'Activo',
+        default=True,
+        help_text='Activar para mostrar'
+    )
     
     class Meta():
         verbose_name = 'Producto'

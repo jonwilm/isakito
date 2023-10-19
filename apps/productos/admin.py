@@ -3,7 +3,7 @@ from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 from django.db import models
 
-from .models import Marca, SliderMarca
+from .models import Marca, SliderMarca, Producto
 
 
 class SliderMarcaResource(resources.ModelResource):
@@ -33,8 +33,22 @@ class MarcaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     inlines = (SliderMarcaInlineAdmin,)
     list_display = ('show_img', 'nombre', 'activo')
     exclude = ('model_state',)
+    list_filter = ('nombre',)
+    ordering = ('-activo',)
+
+
+class ProductoResource(resources.ModelResource):
+    class Meta:
+        model: Producto
+
+
+class ProductoAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('sku', 'titulo', 'marca', 'activo')
+    exclude = ('model_state',)
+    list_filter = ('marca',)
     ordering = ('-activo',)
 
 
 admin.site.register(Marca, MarcaAdmin)
 admin.site.register(SliderMarca, SliderMarcaAdmin)
+admin.site.register(Producto, ProductoAdmin)
