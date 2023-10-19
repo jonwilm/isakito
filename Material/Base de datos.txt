@@ -1,0 +1,98 @@
+GENERALES
+    M - Logo
+        - Logo
+        - Activo
+
+    M - Contacto
+        - Direccion
+        - Telefono
+        - Email
+        - Email formulario contacto
+        - Texto
+        - Activo
+
+    M - Redes sociales
+        - Nombre (Select)
+        - Url
+        - Activo
+
+    M - Slider Home
+        - Titulo
+        - Imagen
+        - Enlace
+        - Activo
+
+    M - Estadisticas
+        - Nombre
+        - Dato
+        - Activo
+
+    M - Nosotros
+        - Imagen
+        - Titulo
+        - Descripcion
+        - Activo
+    M - Videos
+        - Titulo
+        - Url o Codigo
+
+MARCAS
+    M - Marca
+        - Nombre
+        - Logo
+        - Descripcion
+        - Activo
+
+    M - Slider Marca
+        - MARCA
+        - Titulo
+        - Imagen
+        - Activo
+
+PRODUCTOS
+    M - Producto
+        - SKU
+        - Titulo
+        - Descripcion
+        - Precio
+        - EAN
+        - Categoria PRD
+        - Marca PRD
+        - Stock
+        - Proveedor
+        - Alto
+        - Ancho
+        - Largo
+        - Peso
+
+        - Url Video
+        - Edad
+        - Donde comprar (Select multiple, puntos de venta)
+
+    M - Imagenes Producto
+        - Titulo
+        - Imagen
+        - Activo
+
+NOVEDADES
+    M - Novedades
+        - Imagen
+        - Titulo
+        - Subtitulo
+        - Fecha
+        - Descripcion
+        - Activo
+
+    M - Links Novedades
+        - Titulo
+        - Url
+        - Activo
+
+PUNTOS DE VENTA
+    M - Puntos de venta
+        - Nombre
+        - Direccion
+        - Provincia
+        - Latitud
+        - Longitud
+        - Activo
