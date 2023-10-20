@@ -3,7 +3,7 @@ from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 from django.db import models
 
-from .models import Logo, Contacto, RedSocial, Estadistica, SliderHome, Nosotros, Videos
+from .models import Logo, Contacto, RedSocial, Estadistica, SliderHome, Nosotros, Videos, PuntoDeVenta
 
 
 class LogoResource(resources.ModelResource):
@@ -83,6 +83,17 @@ class VideosAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     ordering = ('-activo',)
 
 
+class PuntoDeVentaResource(resources.ModelResource):
+    class Meta:
+        model: PuntoDeVenta
+
+
+class PuntoDeVentaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('nombre', 'activo')
+    exclude = ('model_state',)
+    ordering = ('-activo',)
+
+
 admin.site.register(Logo, LogoAdmin)
 admin.site.register(Contacto, ContactoAdmin)
 admin.site.register(RedSocial, RedSocialAdmin)
@@ -90,3 +101,4 @@ admin.site.register(Estadistica, EstadisticaAdmin)
 admin.site.register(SliderHome, SliderHomeAdmin)
 admin.site.register(Nosotros, NosotrosAdmin)
 admin.site.register(Videos, VideosAdmin)
+admin.site.register(PuntoDeVenta, PuntoDeVentaAdmin)

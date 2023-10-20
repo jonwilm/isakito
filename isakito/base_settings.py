@@ -37,10 +37,12 @@ DJANGO_APPS = [
 LOCAL_APPS = [
     'apps.generales',
     'apps.productos',
+    'apps.novedades',
 ]
 
 THIRDS_APPS = [
     'import_export',
+    'ckeditor',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRDS_APPS

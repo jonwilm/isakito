@@ -3,7 +3,7 @@ from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 from django.db import models
 
-from .models import Marca, SliderMarca, Producto
+from .models import Marca, SliderMarca, Producto, ImagenesProducto
 
 
 class SliderMarcaResource(resources.ModelResource):
@@ -32,9 +32,15 @@ class MarcaResource(resources.ModelResource):
 class MarcaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     inlines = (SliderMarcaInlineAdmin,)
     list_display = ('show_img', 'nombre', 'activo')
-    exclude = ('model_state',)
+    exclude = ('model_state', 'slug')
     list_filter = ('nombre',)
     ordering = ('-activo',)
+
+
+class ImagenesProductoInlineAdmin(admin.TabularInline):
+    model = ImagenesProducto
+    exclude = ('model_state',)
+    extra = 0
 
 
 class ProductoResource(resources.ModelResource):
@@ -43,12 +49,21 @@ class ProductoResource(resources.ModelResource):
 
 
 class ProductoAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    inlines = (ImagenesProductoInlineAdmin,)
     list_display = ('sku', 'titulo', 'marca', 'activo')
-    exclude = ('model_state',)
+    exclude = ('model_state', 'slug')
     list_filter = ('marca',)
+    ordering = ('-activo',)
+
+
+class ImagenesProductoAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('producto', 'imagen', 'activo')
+    exclude = ('model_state',)
+    list_filter = ('producto',)
     ordering = ('-activo',)
 
 
 admin.site.register(Marca, MarcaAdmin)
 admin.site.register(SliderMarca, SliderMarcaAdmin)
 admin.site.register(Producto, ProductoAdmin)
+admin.site.register(ImagenesProducto, ImagenesProductoAdmin)

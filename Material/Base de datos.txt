@@ -90,6 +90,7 @@ NOVEDADES
 PUNTOS DE VENTA
     M - Puntos de venta
         - Nombre
+        - Imagen
         - Direccion
         - Provincia
         - Latitud

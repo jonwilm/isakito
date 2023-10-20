@@ -258,3 +258,45 @@ class Videos(Base):
 
     def __str__(self):
         return str(self.titulo)
+
+
+class PuntoDeVenta(Base):
+    nombre = models.CharField(
+        'Nombre',
+        max_length=255
+    )
+    imagen = models.ImageField(
+        'Imagen',
+        upload_to='media/puntos-de-venta/',
+        help_text='Imagen o Logo del Punto de Venta',
+        blank=True,
+        null=True,
+    )
+    direccion = models.CharField(
+        'Direccion',
+        max_length=255
+    )
+    localidad = models.CharField(
+        'Localidad',
+        max_length=255
+    )
+    latitud = models.CharField(
+        'latitud',
+        max_length=255
+    )
+    longitud = models.CharField(
+        'longitud',
+        max_length=255
+    )
+    activo = models.BooleanField(
+        'Activo',
+        default=True,
+        help_text='Activar para mostrar'
+    )
+
+    class Meta():
+        verbose_name = 'Punto de Venta'
+        verbose_name_plural = 'Puntos de Venta'
+
+    def __str__(self):
+        return str(self.nombre)

@@ -1,13 +1,22 @@
 import os
 from django.db import models, transaction
 from django.utils.html import mark_safe
+from django.utils.text import slugify
 from apps.automatic_crud.models import BaseModel as Base
+
+from apps.generales.models import PuntoDeVenta
 
 
 class Marca(Base):
     nombre = models.CharField(
         'Nombre',
         max_length=100,
+        unique=True,
+    )
+    slug = models.SlugField(
+        'URL',
+        max_length=255,
+        unique=True,
     )
     logo = models.FileField(
         'Logo',
@@ -31,6 +40,12 @@ class Marca(Base):
         verbose_name = 'Marca'
         verbose_name_plural = 'Marcas'
 
+    def save(self, *args, **kwargs):
+        super(Marca, self).save(*args, **kwargs)
+        if not self.slug:
+            self.slug = slugify(self.nombre)
+            self.save()
+
     def __str__(self):
         return str(self.nombre)
 
@@ -49,6 +64,7 @@ def generate_path_marca(instance, filename):
 class SliderMarca(Base):
     marca = models.ForeignKey(
         Marca,
+        verbose_name='Marca',
         on_delete=models.CASCADE,
     )
     titulo = models.CharField(
@@ -99,29 +115,44 @@ class Producto(Base):
     sku = models.CharField(
         'SKU',
         max_length=20,
+        unique=True,
     )
     titulo = models.CharField(
         'Titulo',
         max_length=255,
     )
+    slug = models.SlugField(
+        'URL',
+        max_length=255,
+        unique=True,
+    )
     descripcion = models.TextField(
         'Descripción',
+        blank=True,
+        null=True,
     )
     precio = models.DecimalField(
         'Precio',
         max_digits=10,
-        decimal_places=2
+        decimal_places=2,
+        blank=True,
+        null=True,
     )
     ean = models.CharField(
         'EAN',
         max_length=20,
+        blank=True,
+        null=True,
     )
     categoria = models.CharField(
         'Categoria',
-        max_length=100,
+        max_length=150,
+        blank=True,
+        null=True,
     )
     marca = models.ForeignKey(
-        'Marca',
+        Marca,
+        verbose_name='Marca',
         on_delete=models.CASCADE,
     )
     stock = models.IntegerField(
@@ -130,29 +161,35 @@ class Producto(Base):
     )
     proveedor = models.CharField(
         'Proveedor',
-        max_length=255,
+        max_length=150,
+        blank=True,
+        null=True,
     )
-    alto = models.CharField(
+    alto = models.DecimalField(
         'Alto',
-        max_length=255,
+        max_digits=5,
+        decimal_places=2,
         blank=True,
         null=True,
     )
-    ancho = models.CharField(
+    ancho = models.DecimalField(
         'Ancho',
-        max_length=255,
+        max_digits=5,
+        decimal_places=2,
         blank=True,
         null=True,
     )
-    largo = models.CharField(
+    largo = models.DecimalField(
         'Largo',
-        max_length=255,
+        max_digits=5,
+        decimal_places=2,
         blank=True,
         null=True,
     )
-    peso = models.CharField(
+    peso = models.DecimalField(
         'Peso',
-        max_length=255,
+        max_digits=10,
+        decimal_places=2,
         blank=True,
         null=True,
     )
@@ -167,11 +204,10 @@ class Producto(Base):
         blank=True,
         null=True,
     )
-    puntos_venta = models.CharField(
-        'Donde comprar',
-        max_length=255,
+    puntos_venta = models.ManyToManyField(
+        PuntoDeVenta,
+        verbose_name='Puntos de Venta',
         blank=True,
-        null=True,
     )
     activo = models.BooleanField(
         'Activo',
@@ -183,13 +219,20 @@ class Producto(Base):
         verbose_name = 'Producto'
         verbose_name_plural = 'Productos'
 
+    def save(self, *args, **kwargs):
+        super(Producto, self).save(*args, **kwargs)
+        if not self.slug:
+            self.slug = slugify(self.sku) + '-' + slugify(self.titulo)
+            self.save()
+
     def __str__(self):
-        return str(self.imagen)
+        return str(self.sku)
 
 
 class ImagenesProducto(Base):
     producto = models.ForeignKey(
         Producto,
+        verbose_name='Producto',
         on_delete=models.CASCADE,
     )
     imagen = models.URLField(
