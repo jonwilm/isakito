@@ -1,7 +1,9 @@
 from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
-from django.db import models
+
+from django.contrib.gis.db import models
+from mapwidgets.widgets import GooglePointFieldWidget
 
 from .models import Logo, Contacto, RedSocial, Estadistica, SliderHome, Nosotros, Videos, PuntoDeVenta
 
@@ -83,12 +85,15 @@ class VideosAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     ordering = ('-activo',)
 
 
-class PuntoDeVentaResource(resources.ModelResource):
-    class Meta:
-        model: PuntoDeVenta
+# class PuntoDeVentaResource(resources.ModelResource):
+#     class Meta:
+#         model: PuntoDeVenta
 
 
-class PuntoDeVentaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+class PuntoDeVentaAdmin(admin.ModelAdmin):
+    formfield_overrides = {
+        models.PointField: {"widget": GooglePointFieldWidget}
+    }
     list_display = ('nombre', 'activo')
     exclude = ('model_state',)
     ordering = ('-activo',)

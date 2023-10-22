@@ -1,4 +1,4 @@
-from django.db import models
+from django.contrib.gis.db import models
 from django.urls import path,reverse_lazy
 
 from .utils import get_model

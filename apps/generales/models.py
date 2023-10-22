@@ -1,12 +1,14 @@
-from django.db import models, transaction
+from django.contrib.gis.db import models
+from django.db import transaction
 from django.utils.html import mark_safe
 from apps.automatic_crud.models import BaseModel as Base
+
 
 
 class Logo(Base):
     logo = models.FileField(
         'Logo',
-        upload_to='media/logos/',
+        upload_to='logos/',
         help_text='Logo de Isakito'
     )
     activo = models.BooleanField(
@@ -17,7 +19,7 @@ class Logo(Base):
 
     class Meta():
         verbose_name = 'Logo'
-        verbose_name_plural = 'Logo'
+        verbose_name_plural = 'Logos'
 
     def save(self, *args, **kwargs):
         if not self.activo:
@@ -68,12 +70,12 @@ class Contacto(Base):
     )
     activo = models.BooleanField(
         'Activo',
-        default=False,
+        default=True,
         help_text='Activar para mostrar (Solo un registro de datos de contacto puede estar activo)'
     )
 
     class Meta():
-        verbose_name = 'Dato de Contacto'
+        verbose_name = 'Datos de Contacto'
         verbose_name_plural = 'Datos de Contacto'
 
     def save(self, *args, **kwargs):
@@ -88,18 +90,18 @@ class Contacto(Base):
 
 
 REDES_SOCIALES = [
-    ('ig', 'Instagram'),
-    ('fb', 'facebook'),
-    ('x', 'X (Twitter'),
-    ('in', 'Linkedin'),
-    ('tk', 'TikTok'),
-    ('yt', 'Youtube'),
+    ('Instagram', 'Instagram'),
+    ('facebook', 'facebook'),
+    ('X (Twitter)', 'X (Twitter)'),
+    ('Linkedin', 'Linkedin'),
+    ('TikTok', 'TikTok'),
+    ('Youtube', 'Youtube'),
 ]
 
 class RedSocial(Base):
     red_social = models.CharField(
         'Red Social',
-        max_length=2,
+        max_length=20,
         choices=REDES_SOCIALES
     )
     url = models.URLField(
@@ -126,7 +128,7 @@ class Estadistica(Base):
         help_text='Titulo de la estadística'
     )
     dato = models.CharField(
-        'Título',
+        'Dato',
         max_length=50,
         help_text='Dato númerico de la estadística'
     )
@@ -154,7 +156,7 @@ class SliderHome(Base):
     )
     imagen = models.ImageField(
         'Imagen',
-        upload_to='media/slider-home/',
+        upload_to='slider-home/',
         help_text='Imagen para el Slider de la Página Principal'
     )
     enlace = models.URLField(
@@ -189,7 +191,7 @@ class Nosotros(Base):
         max_length=150,
         blank=True,
         null=True,
-        help_text='Titulo del apartado (Ej. Quienes Somos, Misión, Visión, etc...'
+        help_text='Titulo del apartado (Ej. Quienes Somos, Misión, Visión, etc...)'
     )
     texto = models.TextField(
         'Texto Descriptivo',
@@ -241,7 +243,7 @@ class Videos(Base):
     )
     video = models.FileField(
         'Video',
-        upload_to='media/slider-videos/',
+        upload_to='slider-videos/',
         blank=True,
         null=True,
         help_text='Cargar video en servidor (Utilizar como ultima opcion)'
@@ -267,7 +269,7 @@ class PuntoDeVenta(Base):
     )
     imagen = models.ImageField(
         'Imagen',
-        upload_to='media/puntos-de-venta/',
+        upload_to='puntos-de-venta/',
         help_text='Imagen o Logo del Punto de Venta',
         blank=True,
         null=True,
@@ -280,13 +282,10 @@ class PuntoDeVenta(Base):
         'Localidad',
         max_length=255
     )
-    latitud = models.CharField(
-        'latitud',
-        max_length=255
-    )
-    longitud = models.CharField(
-        'longitud',
-        max_length=255
+    coordenadas = models.PointField(
+        'Ubicacion en mapa',
+        blank=True,
+        null=True,
     )
     activo = models.BooleanField(
         'Activo',

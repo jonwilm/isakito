@@ -52,7 +52,7 @@
                                 <div class="m-card-profile">
                                     <div class="m-card-profile__title">
                                         <h1 class="m-widget1__title" style="color: black; text-transform: uppercase;">
-                                            {{ title }} 
+                                            {{ titleplural }} 
                                         </h1>
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
                                         <div class="m-portlet__head-caption">
                                             <div class="m-portlet__head-title">
                                                 <h3 class="m-portlet__head-text">
-                                                    Listado de {{ title }}
+                                                    Listado de {{ titleplural }}
                                                 </h3>
                                             </div>
                                         </div>
@@ -97,7 +97,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Nombre</th>
+                                                    <th>Elemento</th>
                                                     <th>Opciones</th>
                                                 </tr>
                                             </thead>
@@ -115,11 +115,6 @@
                                                         <span style="overflow: visible; position: relative; width: 110px;">
                                                             <a href="/panel/{{ app }}/{{ model }}/direct-delete/{{ object.id }}/" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Eliminar ">
                                                                 <i class="la la-close"></i>
-                                                            </a>
-                                                        </span>
-                                                        <span style="overflow: visible; position: relative; width: 110px;">
-                                                            <a href="/panel/{{ app }}/{{ model }}/list/" class="m-portlet__nav-link btn m-btn m-btn--hover-warning m-btn--icon m-btn--icon-only m-btn--pill" title="Historial ">
-                                                                <i class="la la-server"></i>
                                                             </a>
                                                         </span>
                                                     </td>

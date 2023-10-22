@@ -32,6 +32,7 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
 ]
 
 LOCAL_APPS = [
@@ -43,6 +44,9 @@ LOCAL_APPS = [
 THIRDS_APPS = [
     'import_export',
     'ckeditor',
+    'mapwidgets',
+    'django_extensions',
+    # 'tastypie',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRDS_APPS
@@ -81,10 +85,11 @@ WSGI_APPLICATION = 'isakito.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# 'ENGINE': 'django.db.backends.sqlite3',
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.contrib.gis.db.backends.spatialite",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
@@ -126,3 +131,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+MAP_WIDGETS = {
+    "GooglePointFieldWidget": (
+        ("zoom", 15),
+        ("mapCenterLocationName", "Buenos Aires"),
+        ("GooglePlaceAutocompleteOptions",
+            {'componentRestrictions': {'country': 'ar'}}
+        ),
+        ("markerFitZoom", 16),
+        ("scrollWheel", True),
+        ("streetViewControl", True),
+    ),
+    "GOOGLE_MAP_API_KEY": "AIzaSyA_B8ATqmugsxXEQ1bgew8ZQi5hdD3uS3I"
+}
+
+SPATIALITE_LIBRARY_PATH = '/usr/local/lib/mod_spatialite.so'

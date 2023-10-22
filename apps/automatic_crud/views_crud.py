@@ -38,6 +38,7 @@ class BaseList(BaseCrudMixin, ListView):
         context['app'] = self.model._meta.app_label
         context['model'] = self.model.__name__.lower()
         context['title'] = self.model._meta.verbose_name
+        context['titleplural'] = self.model._meta.verbose_name_plural
         context['object_list'] = data
         return context
 
@@ -66,6 +67,7 @@ class BaseCreate(BaseCrudMixin, CreateView):
         context = {
             'form': form,
             'title': self.model._meta.verbose_name,
+            'titleplural': self.model._meta.verbose_name_plural,
             'model': self.model.__name__.lower(),
             'app': self.model._meta.app_label
         }
@@ -88,6 +90,7 @@ class BaseCreate(BaseCrudMixin, CreateView):
             context = {
                 'form':form,
                 'title': self.model._meta.verbose_name,
+                'titleplural': self.model._meta.verbose_name_plural,
                 'model': self.model.__name__.lower(),
                 'app': self.model._meta.app_label
             }
@@ -113,6 +116,7 @@ class BaseDetail(BaseCrudMixin, DetailView):
         context['app'] = self.model._meta.app_label
         context['model'] = self.model.__name__.lower()
         context['title'] = self.model._meta.verbose_name
+        context['titleplural'] = self.model._meta.verbose_name_plural
         return context  
 
     def get(self, request, form=None, *args, **kwargs):
@@ -140,6 +144,7 @@ class BaseUpdate(BaseCrudMixin, UpdateView):
         context['app'] = self.model._meta.app_label
         context['model'] = self.model.__name__.lower()
         context['title'] = self.model._meta.verbose_name
+        context['titleplural'] = self.model._meta.verbose_name_plural
         return context    
 
     def get(self, request, form=None, *args, **kwargs):
@@ -173,6 +178,7 @@ class BaseUpdate(BaseCrudMixin, UpdateView):
                 context = {
                     'form':form,
                     'title': self.model._meta.verbose_name,
+                    'titleplural': self.model._meta.verbose_name_plural,
                     'model': self.model.__name__.lower(),
                     'app': self.model._meta.app_label
                 }
@@ -240,6 +246,7 @@ class BaseDirectDelete(BaseCrudMixin, DeleteView):
         context['app'] = self.model._meta.app_label
         context['model'] = self.model.__name__.lower()
         context['title'] = self.model._meta.verbose_name
+        context['titleplural'] = self.model._meta.verbose_name_plural
         context['child_object'] = delete_objects[1:]
         context['child_object_count'] = model_count
         return context

@@ -20,7 +20,7 @@ class Marca(Base):
     )
     logo = models.FileField(
         'Logo',
-        upload_to='media/marcas/',
+        upload_to='marcas/',
         blank=True,
         null=True,
         help_text='Logo de la Marca'
@@ -131,10 +131,11 @@ class Producto(Base):
         blank=True,
         null=True,
     )
-    precio = models.DecimalField(
+    precio = models.CharField(
         'Precio',
-        max_digits=10,
-        decimal_places=2,
+        # max_digits=10,
+        # decimal_places=2,
+        max_length=20,
         blank=True,
         null=True,
     )
@@ -155,41 +156,51 @@ class Producto(Base):
         verbose_name='Marca',
         on_delete=models.CASCADE,
     )
-    stock = models.IntegerField(
+    stock = models.CharField(
         'Stock',
-        default=0
+        max_length=20,
+        blank=True,
+        null=True,
     )
+    # stock = models.IntegerField(
+    #     'Stock',
+    #     default=0
+    # )
     proveedor = models.CharField(
         'Proveedor',
         max_length=150,
         blank=True,
         null=True,
     )
-    alto = models.DecimalField(
+    alto = models.CharField(
         'Alto',
-        max_digits=5,
-        decimal_places=2,
+        # max_digits=5,
+        # decimal_places=2,
+        max_length=20,
         blank=True,
         null=True,
     )
-    ancho = models.DecimalField(
+    ancho = models.CharField(
         'Ancho',
-        max_digits=5,
-        decimal_places=2,
+        # max_digits=5,
+        # decimal_places=2,
+        max_length=20,
         blank=True,
         null=True,
     )
-    largo = models.DecimalField(
+    largo = models.CharField(
         'Largo',
-        max_digits=5,
-        decimal_places=2,
+        # max_digits=5,
+        # decimal_places=2,
+        max_length=20,
         blank=True,
         null=True,
     )
-    peso = models.DecimalField(
+    peso = models.CharField(
         'Peso',
-        max_digits=10,
-        decimal_places=2,
+        # max_digits=10,
+        # decimal_places=2,
+        max_length=20,
         blank=True,
         null=True,
     )
@@ -250,3 +261,29 @@ class ImagenesProducto(Base):
 
     def __str__(self):
         return str(self.imagen)
+
+
+STATUS_EXCEL = (
+    ('1', 'Por Importar'),
+    ('2', 'Importado'),
+    ('3', 'Error al Importar'),
+)
+
+class ImportarProductos(Base):
+    documento = models.FileField(
+        'Excel de productos',
+        upload_to='excels-productos/',
+    )
+    status = models.CharField(
+        'Estado',
+        max_length=1,
+        choices=STATUS_EXCEL,
+        default='1',
+    )
+
+    def __str__(self):
+        return str(self.pk)
+
+    class Meta:
+        verbose_name = 'Importar Producto'
+        verbose_name_plural = 'Importar Productos'
