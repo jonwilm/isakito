@@ -23,7 +23,10 @@ from apps.automatic_crud.views import PanelLoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('', include('apps.generales.urls')),
+
+    path('accounts/login/', PanelLoginView.as_view(), name='panel-login'),
     path('panel/', include('apps.automatic_crud.urls')),
-    path('accounts/login/', PanelLoginView.as_view(), name='panel-login')
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

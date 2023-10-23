@@ -3,18 +3,18 @@ from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 from django.db import models
 
-from .models import Novedad
+from .models import News
 
 
-class NovedadResource(resources.ModelResource):
+class NewsResource(resources.ModelResource):
     class Meta:
-        model: Novedad
+        model: News
 
 
-class NovedadAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ('titulo', 'fecha_creacion', 'activo')
+class NewsAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('title', 'date_created', 'active')
     exclude = ('model_state', 'slug')
-    ordering = ('-activo', 'fecha_creacion')
+    ordering = ('-active', 'date_created')
 
 
-admin.site.register(Novedad, NovedadAdmin)
+admin.site.register(News, NewsAdmin)

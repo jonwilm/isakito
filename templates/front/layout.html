@@ -1,0 +1,66 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>{% block title %}{% endblock title %} | Isakito</title>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+  <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+  <link rel="mask-icon" href="{% static 'favicon/safari-pinned-tab.svg' %}" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="{% static 'libs/bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'libs/boxicons/css/boxicons.min.css' %}">
+  <!-- <link rel="stylesheet" href="{% static 'libs/aos/css/aos.css' %}"> -->
+  <link rel="stylesheet" href="{% static 'fonts/fonts.css' %}">
+  <link rel="stylesheet" href="{% static 'front/assets/css/styles.css' %}">
+  {% block stylesheet %}{% endblock stylesheet %}
+  {% block css %}{% endblock css %}
+</head>
+<body>
+  
+  {% block navbar %}{% endblock navbar %}
+  
+  {% block content %}{% endblock content %}
+  
+  <footer>
+    <div class="py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-4 order-3 order-md-1 mt-3 mt-md-0 d-flex align-items-center justify-content-center justify-content-md-start">
+            <small>
+              Desarrollo web:
+              <a class="link-black-blue fw-bold" href="https://neex.com.ar"> Neex Corp</a>
+            </small>
+          </div>
+          <div class="col-12 col-md-4 text-center order-1 order-md-2">
+            <a href="/">
+              <img class="logo-footer" src="{{ logo }}" alt="">
+            </a>
+          </div>
+          <div class="col-12 col-md-4 order-2 order-md-3 mt-3 mt-md-0 d-flex align-items-center justify-content-center justify-content-md-end">
+            <small><span class="fw-bold">Isakito</span> &copy; {% now "Y" %}. Derechos Reservados</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- scripts -->
+  <script src="{% static 'libs/jquery/jquery-3.7.1.min.js' %}"></script>
+  <script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'front/assets/js/main.js' %}"></script>
+  {% block js %}{% endblock js %}
+</body>
+</html>

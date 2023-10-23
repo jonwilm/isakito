@@ -3,73 +3,73 @@ from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 from django.db import models
 
-from .models import Marca, SliderMarca, Producto, ImagenesProducto, ImportarProductos
+from .models import Brand, SliderBrand, Product, ImagesProduct, ImportProducts
 
 
-class SliderMarcaResource(resources.ModelResource):
+class SliderBrandResource(resources.ModelResource):
     class Meta:
-        model: SliderMarca
+        model: SliderBrand
 
 
-class SliderMarcaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ('marca', 'show_img', 'titulo', 'orden', 'activo')
+class SliderBrandAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('brand', 'show_img', 'title', 'order', 'active')
     exclude = ('model_state',)
-    list_filter = ('marca',)
-    ordering = ('-activo',)
+    list_filter = ('brand',)
+    ordering = ('-active',)
 
 
-class SliderMarcaInlineAdmin(admin.TabularInline):
-    model = SliderMarca
+class SliderBrandInlineAdmin(admin.TabularInline):
+    model = SliderBrand
     exclude = ('model_state',)
     extra = 0
 
 
-class MarcaResource(resources.ModelResource):
+class BrandResource(resources.ModelResource):
     class Meta:
-        model: Marca
+        model: Brand
 
 
-class MarcaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    inlines = (SliderMarcaInlineAdmin,)
-    list_display = ('nombre', 'show_img', 'activo')
+class BrandAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    inlines = (SliderBrandInlineAdmin,)
+    list_display = ('name', 'show_img', 'active')
     exclude = ('model_state', 'slug')
-    list_filter = ('nombre',)
-    ordering = ('-activo',)
+    list_filter = ('name',)
+    ordering = ('-active',)
 
 
-class ImagenesProductoInlineAdmin(admin.TabularInline):
-    model = ImagenesProducto
+class ImagenesProductInlineAdmin(admin.TabularInline):
+    model = ImagesProduct
     exclude = ('model_state',)
     extra = 0
 
 
-class ProductoResource(resources.ModelResource):
+class ProductResource(resources.ModelResource):
     class Meta:
-        model: Producto
+        model: Product
 
 
-class ProductoAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    inlines = (ImagenesProductoInlineAdmin,)
-    list_display = ('sku', 'titulo', 'marca', 'activo')
+class ProductAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    inlines = (ImagenesProductInlineAdmin,)
+    list_display = ('sku', 'title', 'brand', 'active')
     exclude = ('model_state', 'slug')
-    list_filter = ('marca',)
-    ordering = ('-activo',)
+    list_filter = ('brand',)
+    ordering = ('-active',)
 
 
-class ImagenesProductoAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ('producto', 'imagen', 'activo')
+class ImagenesProductAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('product', 'image', 'active')
     exclude = ('model_state',)
-    list_filter = ('producto',)
-    ordering = ('-activo',)
+    list_filter = ('product',)
+    ordering = ('-active',)
 
 
-class ImportarProductosAdmin(admin.ModelAdmin):
-    list_display = ('id', 'documento', 'status')
+class ImportarProductsAdmin(admin.ModelAdmin):
+    list_display = ('id', 'document', 'status')
     exclude = ('model_state',)
 
 
-admin.site.register(Marca, MarcaAdmin)
-admin.site.register(SliderMarca, SliderMarcaAdmin)
-admin.site.register(Producto, ProductoAdmin)
-admin.site.register(ImagenesProducto, ImagenesProductoAdmin)
-admin.site.register(ImportarProductos, ImportarProductosAdmin)
+admin.site.register(Brand, BrandAdmin)
+admin.site.register(SliderBrand, SliderBrandAdmin)
+admin.site.register(Product, ProductAdmin)
+admin.site.register(ImagesProduct, ImagenesProductAdmin)
+admin.site.register(ImportProducts, ImportarProductsAdmin)

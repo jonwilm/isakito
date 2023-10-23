@@ -1,0 +1,45 @@
+<nav class="navbar fixed-top navbar-expand-lg py-0">
+  <div class="container-fluid align-items-lg-start">
+    <a class="navbar-brand py-3" href="/">
+      <img class="logo-navbar" src="{{ logo }}" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body justify-content-end">
+        <div class="">
+          <ul class="navbar-nav pre-nav justify-content-end flex-grow-1 pe-3 mb-3">
+            <li class="nav-item">
+              <a class="nav-link" href="#">CORREDORES</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item mt-3 mt-lg-0">
+              <a class="nav-link {% if itemActive == 'nosotros' %}active{% endif %}" href="#">NOSOTROS</a>
+            </li>
+            <li class="nav-item mt-3 mt-lg-0">
+              <a class="nav-link {% if itemActive == 'marcas' %}active{% endif %}" href="#">NUESTRAS MARCAS</a>
+            </li>
+            <li class="nav-item mt-3 mt-lg-0">
+              <a class="nav-link {% if itemActive == 'novedades' %}active{% endif %}" href="#">NOVEDADES</a>
+            </li>
+            <li class="nav-item mt-3 mt-lg-0">
+              <a class="nav-link {% if itemActive == 'puntos' %}active{% endif %}" href="#">PUNTOS DE VENTA</a>
+            </li>
+            <li class="nav-item mt-3 mt-lg-0">
+              <a class="nav-link {% if itemActive == 'contacto' %}active{% endif %}" href="#">CONTACTO</a>
+            </li>
+            <li class="nav-item mt-3 mt-lg-0">
+              <a class="nav-link" href="#">CATALOGO</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

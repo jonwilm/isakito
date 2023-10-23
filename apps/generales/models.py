@@ -11,8 +11,8 @@ class Logo(Base):
         upload_to='logos/',
         help_text='Logo de Isakito'
     )
-    activo = models.BooleanField(
-        'Activo',
+    active = models.BooleanField(
+        'Active',
         default=False,
         help_text='Activar para mostrar (Solo un logo puede estar activo)'
     )
@@ -22,10 +22,10 @@ class Logo(Base):
         verbose_name_plural = 'Logos'
 
     def save(self, *args, **kwargs):
-        if not self.activo:
+        if not self.active:
             return super(Logo, self).save(*args, **kwargs)  
         with transaction.atomic():
-            Logo.objects.filter(activo=True).update(activo=False)
+            Logo.objects.filter(active=True).update(active=False)
             return super(Logo, self).save(*args, **kwargs) 
 
     def __str__(self):
@@ -38,13 +38,13 @@ class Logo(Base):
     show_img.allow_tags = True
 
 
-class Contacto(Base):
-    direccion = models.CharField(
+class Contact(Base):
+    address = models.CharField(
         'Direccion',
         max_length=255,
         help_text='Direccion completa'
     )
-    telefono = models.CharField(
+    phone = models.CharField(
         'Teléfono',
         max_length=20,
     )
@@ -62,13 +62,13 @@ class Contacto(Base):
         'Correo eléctronico formulario',
         help_text='Correo eléctronico destino del formulario de contacto'
     )
-    descripcion = models.TextField(
+    description = models.TextField(
         'Invitación de contacto',
         blank=True,
         null=True,
         help_text='Texto de invtacion a contactarnos'
     )
-    activo = models.BooleanField(
+    active = models.BooleanField(
         'Activo',
         default=True,
         help_text='Activar para mostrar (Solo un registro de datos de contacto puede estar activo)'
@@ -79,17 +79,17 @@ class Contacto(Base):
         verbose_name_plural = 'Datos de Contacto'
 
     def save(self, *args, **kwargs):
-        if not self.activo:
-            return super(Contacto, self).save(*args, **kwargs)
+        if not self.active:
+            return super(Contact, self).save(*args, **kwargs)
         with transaction.atomic():
-            Contacto.objects.filter(activo=True).update(activo=False)
-            return super(Contacto, self).save(*args, **kwargs)
+            Contact.objects.filter(active=True).update(active=False)
+            return super(Contact, self).save(*args, **kwargs)
 
     def __str__(self):
-        return str(self.direccion)
+        return str(self.address)
 
 
-REDES_SOCIALES = [
+SOCIAL_NETWORKS = [
     ('Instagram', 'Instagram'),
     ('facebook', 'facebook'),
     ('X (Twitter)', 'X (Twitter)'),
@@ -98,16 +98,16 @@ REDES_SOCIALES = [
     ('Youtube', 'Youtube'),
 ]
 
-class RedSocial(Base):
-    red_social = models.CharField(
+class SocialNetwork(Base):
+    social_network = models.CharField(
         'Red Social',
         max_length=20,
-        choices=REDES_SOCIALES
+        choices=SOCIAL_NETWORKS
     )
     url = models.URLField(
         'Url'
     )
-    activo = models.BooleanField(
+    active = models.BooleanField(
         'Activo',
         default=True,
         help_text='Activar para mostrar'
@@ -118,21 +118,21 @@ class RedSocial(Base):
         verbose_name_plural = 'Redes Sociales'
 
     def __str__(self):
-        return str(self.red_social)
+        return str(self.social_network)
 
 
-class Estadistica(Base):
-    titulo = models.CharField(
+class Statistic(Base):
+    title = models.CharField(
         'Título',
         max_length=50,
         help_text='Titulo de la estadística'
     )
-    dato = models.CharField(
+    data = models.CharField(
         'Dato',
         max_length=50,
         help_text='Dato númerico de la estadística'
     )
-    activo = models.BooleanField(
+    active = models.BooleanField(
         'Activo',
         default=True,
         help_text='Activar para mostrar'
@@ -143,29 +143,29 @@ class Estadistica(Base):
         verbose_name_plural = 'Estadísticas'
 
     def __str__(self):
-        return str(self.titulo)
+        return str(self.title)
 
 
 class SliderHome(Base):
-    titulo = models.CharField(
+    title = models.CharField(
         'Título',
         max_length=150,
         blank=True,
         null=True,
         help_text='Titulo de la imagen'
     )
-    imagen = models.ImageField(
+    image = models.ImageField(
         'Imagen',
         upload_to='slider-home/',
-        help_text='Imagen para el Slider de la Página Principal'
+        help_text='Imagen para el Slider de la Página Principal (USAR IMAGENES CON LA MISMA RELACION. RECOMENDADO 1920x700)'
     )
-    enlace = models.URLField(
+    link = models.URLField(
         'Enlace Destino',
         blank=True,
         null=True,
         help_text='Url de la pagina destino al hacer click'
     )
-    activo = models.BooleanField(
+    active = models.BooleanField(
         'Activo',
         default=True,
         help_text='Activar para mostrar'
@@ -176,30 +176,36 @@ class SliderHome(Base):
         verbose_name_plural = 'Slider Home'
 
     def __str__(self):
-        return str(self.imagen)
+        return str(self.image)
 
     def show_img(self):
         return mark_safe(
-            u'<img src="%s" height="75" />' % self.imagen.url)
+            u'<img src="%s" height="75" />' % self.image.url)
     show_img.short_description = 'Imagen'
     show_img.allow_tags = True
 
+    def show_img_mobile(self):
+        return mark_safe(
+            u'<img src="%s" height="75" />' % self.image_mobile.url)
+    show_img.short_description = 'Imagen Mobile'
+    show_img.allow_tags = True
 
-class Nosotros(Base):
-    titulo = models.CharField(
+
+class Us(Base):
+    title = models.CharField(
         'Título',
         max_length=150,
         blank=True,
         null=True,
         help_text='Titulo del apartado (Ej. Quienes Somos, Misión, Visión, etc...)'
     )
-    texto = models.TextField(
+    text = models.TextField(
         'Texto Descriptivo',
         blank=True,
         null=True,
         help_text='Texto de descriptivo del apartado'
     )
-    activo = models.BooleanField(
+    active = models.BooleanField(
         'Activo',
         default=True,
         help_text='Activar para mostrar'
@@ -210,25 +216,25 @@ class Nosotros(Base):
         verbose_name_plural = 'Nosotros'
 
     def __str__(self):
-        return str(self.titulo)
+        return str(self.title)
 
 
-TIPO_REPRODUCTOR = [
-    ('yt', 'Youtube'),
-    ('html', 'HTML'),
+TYPE_PLAYER = [
+    ('Youtube', 'Youtube'),
+    ('HTML', 'HTML'),
 ]
 
 class Videos(Base):
-    tipo = models.CharField(
+    type = models.CharField(
         'Tipo de reproductor',
-        max_length=4,
-        choices=TIPO_REPRODUCTOR
+        max_length=10,
+        choices=TYPE_PLAYER
     )
-    titulo = models.CharField(
+    title = models.CharField(
         'Titulo del video',
         max_length=255
     )
-    codigo_yt = models.CharField(
+    code_yt = models.CharField(
         'Código de Youtube',
         max_length=20,
         blank=True,
@@ -248,7 +254,7 @@ class Videos(Base):
         null=True,
         help_text='Cargar video en servidor (Utilizar como ultima opcion)'
     )
-    activo = models.BooleanField(
+    active = models.BooleanField(
         'Activo',
         default=True,
         help_text='Activar para mostrar'
@@ -259,36 +265,36 @@ class Videos(Base):
         verbose_name_plural = 'Videos'
 
     def __str__(self):
-        return str(self.titulo)
+        return str(self.title)
 
 
-class PuntoDeVenta(Base):
-    nombre = models.CharField(
+class PointOfSale(Base):
+    name = models.CharField(
         'Nombre',
         max_length=255
     )
-    imagen = models.ImageField(
+    image = models.ImageField(
         'Imagen',
         upload_to='puntos-de-venta/',
         help_text='Imagen o Logo del Punto de Venta',
         blank=True,
         null=True,
     )
-    direccion = models.CharField(
+    address = models.CharField(
         'Direccion',
         max_length=255
     )
-    localidad = models.CharField(
+    locality = models.CharField(
         'Localidad',
         max_length=255
     )
-    coordenadas = models.PointField(
+    coordinates = models.PointField(
         'Ubicacion en mapa',
         blank=True,
         null=True,
     )
-    activo = models.BooleanField(
-        'Activo',
+    active = models.BooleanField(
+        'Active',
         default=True,
         help_text='Activar para mostrar'
     )
@@ -298,4 +304,4 @@ class PuntoDeVenta(Base):
         verbose_name_plural = 'Puntos de Venta'
 
     def __str__(self):
-        return str(self.nombre)
+        return str(self.name)

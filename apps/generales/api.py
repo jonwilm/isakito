@@ -1,21 +1,21 @@
 from django.conf import settings
 from tastypie.resources import ModelResource
-from .models import PuntoDeVenta
+from .models import PointOfSale
 
 
-class PuntoDeVentaResource(ModelResource):
+class PointOfSaleResource(ModelResource):
     
     def dehydrate(self, bundle):
-        del bundle.data['coordenadas']
-        bundle.data['lat'] = bundle.obj.coordenadas.y
-        bundle.data['lng'] = bundle.obj.coordenadas.x
+        del bundle.data['coordinates']
+        bundle.data['lat'] = bundle.obj.coordinates.y
+        bundle.data['lng'] = bundle.obj.coordinates.x
         return bundle
 
     class Meta:
-        queryset = PuntoDeVenta.objects.all()
+        queryset = PointOfSale.objects.all()
         resource_name = 'generales'
         list_allowed_methods = ['get']
         filtering = {
-            'localidad': ('exact', ),
+            'locality': ('exact', ),
         }
         max_limit = None
