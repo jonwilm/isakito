@@ -184,12 +184,6 @@ class SliderHome(Base):
     show_img.short_description = 'Imagen'
     show_img.allow_tags = True
 
-    def show_img_mobile(self):
-        return mark_safe(
-            u'<img src="%s" height="75" />' % self.image_mobile.url)
-    show_img.short_description = 'Imagen Mobile'
-    show_img.allow_tags = True
-
 
 class Us(Base):
     title = models.CharField(
@@ -305,3 +299,106 @@ class PointOfSale(Base):
 
     def __str__(self):
         return str(self.name)
+
+
+class GalleryHome(Base):
+    imageV1 = models.ImageField(
+        'Imagen Vertical 1',
+        upload_to='gallery-home/',
+        help_text='Imagen en Formato Vertical. Recomendado 800x1400',
+    )
+    linkV1 = models.URLField(
+        'Enlace Destino Imagen Vertical 1',
+        blank=True,
+        null=True,
+        help_text='Url de la pagina destino al hacer click'
+    )
+    imageV2 = models.ImageField(
+        'Imagen Vertical 2',
+        upload_to='gallery-home/',
+        help_text='Imagen en Formato Vertical. Recomendado 800x1400',
+    )
+    linkV2 = models.URLField(
+        'Enlace Destino Imagen Vertical 2',
+        blank=True,
+        null=True,
+        help_text='Url de la pagina destino al hacer click'
+    )
+    imageH1 = models.ImageField(
+        'Imagen Horizontal 1',
+        upload_to='gallery-home/',
+        help_text='Imagen en Formato Horizontal. Recomendado 1400x550',
+    )
+    linkH1 = models.URLField(
+        'Enlace Destino Imagen Horizontal 1',
+        blank=True,
+        null=True,
+        help_text='Url de la pagina destino al hacer click'
+    )
+    imageH2 = models.ImageField(
+        'Imagen Horizontal 2',
+        upload_to='gallery-home/',
+        help_text='Imagen en Formato Horizontal. Recomendado 1400x550',
+    )
+    linkH2 = models.URLField(
+        'Enlace Destino Imagen Horizontal 2',
+        blank=True,
+        null=True,
+        help_text='Url de la pagina destino al hacer click'
+    )
+    imageC = models.ImageField(
+        'Imagen Central',
+        upload_to='gallery-home/',
+        help_text='Imagen Central. Recomendado 800x550',
+    )
+    linkC = models.URLField(
+        'Enlace Destino Imagen Central',
+        blank=True,
+        null=True,
+        help_text='Url de la pagina destino al hacer click'
+    )
+    active = models.BooleanField(
+        'Active',
+        default=True,
+        help_text='Activar para mostrar'
+    )
+
+    class Meta():
+        verbose_name = 'Galeria Home'
+        verbose_name_plural = 'Galeria Home'
+
+    def save(self, *args, **kwargs):
+        if not self.active:
+            return super(GalleryHome, self).save(*args, **kwargs)
+        with transaction.atomic():
+            GalleryHome.objects.filter(active=True).update(active=False)
+            return super(GalleryHome, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return str(self.id)
+
+    def show_img_V1(self):
+        return mark_safe(
+            u'<img src="%s" height="75" />' % self.imageV1.url)
+    show_img_V1.short_description = 'Imagen Vertical 1'
+    show_img_V1.allow_tags = True
+    def show_img_V2(self):
+        return mark_safe(
+            u'<img src="%s" height="75" />' % self.imageV2.url)
+    show_img_V2.short_description = 'Imagen Vertical 2'
+    show_img_V2.allow_tags = True
+    def show_img_H1(self):
+        return mark_safe(
+            u'<img src="%s" height="75" />' % self.imageH1.url)
+    show_img_H1.short_description = 'Imagen Horizontal 1'
+    show_img_H1.allow_tags = True
+    def show_img_H2(self):
+        return mark_safe(
+            u'<img src="%s" height="75" />' % self.imageH2.url)
+    show_img_H2.short_description = 'Imagen Horizontal 2'
+    show_img_H2.allow_tags = True
+    def show_img_C(self):
+        return mark_safe(
+            u'<img src="%s" height="75" />' % self.imageC.url)
+    show_img_C.short_description = 'Imagen Central'
+    show_img_C.allow_tags = True

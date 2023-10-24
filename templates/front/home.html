@@ -46,7 +46,7 @@
 </div>
 
 <div class="marcas py-5">
-  <div class="container pt-5">
+  <div class="container py-5">
     <h1 class="text-bebas text-blue text-center mb-5">NUESTRAS MARCAS</h1>
     <div class="slider-marcas">
       {% for brand in brands %}
@@ -56,9 +56,43 @@
         </a>
       </div>
       {% endfor %}
-			</div>
+    </div>
   </div>
 </div>
+
+{% if galleryHome %}
+<div class="gallery-home py-5">
+  <div class="container">
+    <div class="wrapper">
+      <div class="itemV1">
+        <a href="{% if galleryHome.linkV1 == None %}#{% else %}{{ galleryHome.linkV1 }}{% endif %}">
+          <img src="{{ galleryHome.imageV1 }}" alt="">
+        </a>
+      </div>
+      <div class="itemV2">
+        <a href="{% if galleryHome.linkV2 == None %}#{% else %}{{ galleryHome.linkV2 }}{% endif %}">
+          <img src="{{ galleryHome.imageV2 }}" alt="">
+        </a>
+      </div>
+      <div class="itemH1">
+        <a href="{% if galleryHome.linkH1 == None %}#{% else %}{{ galleryHome.linkH1 }}{% endif %}">
+          <img src="{{ galleryHome.imageH1 }}" alt="">
+        </a>
+      </div>
+      <div class="itemH2">
+        <a href="{% if galleryHome.linkH2 == None %}#{% else %}{{ galleryHome.linkH2 }}{% endif %}">
+          <img src="{{ galleryHome.imageH2 }}" alt="">
+        </a>
+      </div>
+      <div class="itemC">
+        <a href="{% if galleryHome.linkC == None %}#{% else %}{{ galleryHome.linkC }}{% endif %}">
+          <img src="{{ galleryHome.imageC }}" alt="">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
 
 <br>
 <br>

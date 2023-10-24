@@ -5,7 +5,7 @@ from import_export.admin import ImportExportModelAdmin
 from django.contrib.gis.db import models
 from mapwidgets.widgets import GooglePointFieldWidget
 
-from .models import Logo, Contact, SocialNetwork, Statistic, SliderHome, Us, Videos, PointOfSale
+from .models import Logo, Contact, SocialNetwork, Statistic, SliderHome, Us, Videos, PointOfSale, GalleryHome
 
 
 class LogoResource(resources.ModelResource):
@@ -99,6 +99,17 @@ class PointOfSaleAdmin(admin.ModelAdmin):
     ordering = ('-active',)
 
 
+class GalleryHomeResource(resources.ModelResource):
+    class Meta:
+        model: GalleryHome
+
+
+class GalleryHomeAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('id', 'show_img_V1', 'show_img_V2', 'show_img_C', 'show_img_H1', 'show_img_H2', 'active')
+    exclude = ('model_state',)
+    ordering = ('-active',)
+
+
 admin.site.register(Logo, LogoAdmin)
 admin.site.register(Contact, ContactAdmin)
 admin.site.register(SocialNetwork, SocialNetworkAdmin)
@@ -107,3 +118,4 @@ admin.site.register(SliderHome, SliderHomeAdmin)
 admin.site.register(Us, UsAdmin)
 admin.site.register(Videos, VideosAdmin)
 admin.site.register(PointOfSale, PointOfSaleAdmin)
+admin.site.register(GalleryHome, GalleryHomeAdmin)
