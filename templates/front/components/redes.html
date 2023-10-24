@@ -1,0 +1,14 @@
+<div class="redes-sociales py-5">
+  <div class="container py-5">
+    <h1 class="text-bebas display-4 text-white text-center mb-5">SIGUENOS</h1>
+    <div class="content-redes">
+      {% for socialNetwork in socialNetworks %}
+      <a href="{{ socialNetwork.url }}" target="_blank" rel="noopener noreferrer">
+        <div class="rrss {{ socialNetwork.social_network|lower }}">
+          <i class='bx bxl-{{ socialNetwork.social_network|lower }}'></i>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>

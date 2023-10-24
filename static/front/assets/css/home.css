@@ -122,6 +122,7 @@
 }
 .slider-videos .slick-slide {
   overflow: hidden;
+  padding: 0.5rem;
 }
 .slider-videos .slick-slide img {
   width: 100%;

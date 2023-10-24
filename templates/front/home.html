@@ -13,11 +13,10 @@
 
 {% endblock css %}
 
-{% block navbar %}
-{% include 'front/components/navbar.html' with itemActive="home" %}
-{% endblock navbar %}
 
 {% block content %}
+{% include 'front/components/navbar.html' with itemActive="home" %}
+
 <div class="slider slider-home">
   <div id="sliderHome" class="carousel slide carousel-fade" data-bs-ride="carousel">
     <div class="carousel-indicators mb-0 mb-sm-3">
@@ -94,6 +93,7 @@
 </div>
 {% endif %}
 
+{% if videos %}
 <div class="videos-destacados py-5">
   <div class="container py-5">
     <h1 class="text-bebas display-4 text-blue text-center mb-5">VIDEOS DESTACADOS</h1>
@@ -112,6 +112,13 @@
     </div>
   </div>
 </div>
+{% endif %}
+
+{% include 'front/components/estadisticas.html' %}
+
+{% include 'front/components/newsletter.html' %}
+
+{% include 'front/components/redes.html' %}
 
 <div class="modal fade" id="modalVideo" tabindex="-1" aria-labelledby="modalVideoLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -136,63 +143,71 @@
 {% block js %}
 <script src="{% static 'libs/slick-slider/slick.min.js' %}"></script>
 <script>
-  $('.slider-marcas').slick({
-    centerMode: true,
-    centerPadding: '60px',
-    slidesToShow: 5,
-    autoplay: true,
-    autoplaySpeed: 1500,
-    swipeToSlide: true,
-    responsive: [
-    {
-      breakpoint: 768,
-      settings: {
-        arrows: true,
-        centerMode: true,
-        centerPadding: '40px',
-        slidesToShow: 3
+  $(window).ready(function() {
+    
+    $('.slider-marcas').slick({
+      centerMode: true,
+      centerPadding: '60px',
+      slidesToShow: 5,
+      autoplay: true,
+      autoplaySpeed: 1500,
+      swipeToSlide: true,
+      responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: true,
+          centerMode: true,
+          centerPadding: '40px',
+          slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          arrows: true,
+          dots: false,
+          centerMode: true,
+          centerPadding: '40px',
+          slidesToShow: 1
+        }
       }
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        arrows: true,
-        dots: false,
-        centerMode: true,
-        centerPadding: '40px',
-        slidesToShow: 1
-      }
+      ]
+    })
+    var lenVideos = {{ videos|length }}
+    var centerVideos = false
+    if (lenVideos > 3) {
+      centerVideos = true
     }
-    ]
-  })
-  $('.slider-videos').slick({
-    centerMode: true,
-    centerPadding: '60px',
-    slidesToShow: 3,
-    autoplay: true,
-    autoplaySpeed: 1500,
-    swipeToSlide: true,
-    responsive: [
-    {
-      breakpoint: 768,
-      settings: {
-        arrows: true,
-        centerMode: true,
-        centerPadding: '40px',
-        slidesToShow: 3
+    $('.slider-videos').slick({
+      centerMode: centerVideos,
+      centerPadding: '60px',
+      slidesToShow: 3,
+      autoplay: true,
+      autoplaySpeed: 1500,
+      swipeToSlide: true,
+      responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: true,
+          centerMode: centerVideos,
+          centerPadding: '40px',
+          slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          arrows: true,
+          dots: false,
+          centerMode: centerVideos,
+          centerPadding: '40px',
+          slidesToShow: 1
+        }
       }
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        arrows: true,
-        dots: false,
-        centerMode: true,
-        centerPadding: '40px',
-        slidesToShow: 1
-      }
-    }
-    ]
+      ]
+    })
   })
   $('.link-modalVideo').on('click', function() {
     $('#modalVideoLabel').text($(this).attr('data-title'))

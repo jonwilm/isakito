@@ -91,8 +91,8 @@ class Contact(Base):
 
 SOCIAL_NETWORKS = [
     ('Instagram', 'Instagram'),
-    ('facebook', 'facebook'),
-    ('X (Twitter)', 'X (Twitter)'),
+    ('Facebook', 'Facebook'),
+    ('Twitter', 'X (Twitter)'),
     ('Linkedin', 'Linkedin'),
     ('TikTok', 'TikTok'),
     ('Youtube', 'Youtube'),

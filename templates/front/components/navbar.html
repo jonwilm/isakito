@@ -1,7 +1,7 @@
 <nav class="navbar fixed-top navbar-expand-lg py-0">
   <div class="container-fluid align-items-lg-start">
     <a class="navbar-brand py-3" href="/">
-      <img class="logo-navbar" src="{{ logo }}" alt="">
+      <img class="logo-navbar" src="{% if logo %}{{ logo }}{% endif %}" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>

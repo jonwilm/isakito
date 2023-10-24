@@ -56,6 +56,28 @@ body {
   outline: none;
   box-shadow: none;
 }
+.btn-white-blue {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  background-color: var(--white);
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+  box-shadow: 1px 1px 0px 1px var(--blue);
+  transition: all 0.3s;
+}
+.btn-white-blue.active {
+  background-color: var(--blue);
+  color: var(--white);
+}
+.btn-white-blue:hover {
+  background-color: var(--blue);
+  color: var(--white);
+}
+.btn-white-blue:focus {
+  background-color: var(--white);
+  color: var(--blue);
+}
 /* ********************************************** */
 /* CAROUSEL */
 /* ********************************************** */
@@ -153,6 +175,83 @@ body {
 .navbar .navbar-nav.pre-nav .nav-item .nav-link:focus {
   background-color: var(--white);
   color: var(--black);
+}
+/* ********************************************** */
+/* ESTADISTICAS */
+/* ********************************************** */
+.estadisticas {
+  background-color: var(--blue);
+}
+.estadisticas .content-estadisticas {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.estadisticas .content-estadisticas .data {
+  text-align: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 4rem;
+  color: var(--white);
+}
+.estadisticas .content-estadisticas .title {
+  text-align: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: var(--yellow);
+}
+/* ********************************************** */
+/* NEWSLETTER */
+/* ********************************************** */
+.newsletter input {
+  border: 1px solid var(--blue);
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+  box-shadow: 1px 1px 0px 1px var(--blue);
+}
+/* ********************************************** */
+/* REDES SOCIALES */
+/* ********************************************** */
+.redes-sociales {
+  background-color: var(--blue);
+}
+.redes-sociales .content-redes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.redes-sociales .content-redes a {
+  margin: 1rem;
+  color: var(--white);
+  font-size: 2rem;
+  text-decoration: none;
+}
+.redes-sociales .content-redes a .rrss {
+  width: 4rem;
+  height: 4rem;
+  border: 2px solid var(--white);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  transition: all 0.3s;
+}
+.redes-sociales .content-redes a .rrss.youtube:hover {
+  background: #bb0000;
+}
+.redes-sociales .content-redes a .rrss.facebook:hover {
+  background: #3b5998;
+}
+.redes-sociales .content-redes a .rrss.twitter:hover {
+  background: #55acee;
+}
+.redes-sociales .content-redes a .rrss.instagram:hover {
+  background: linear-gradient(45deg, #fdf497 0%,#fd5949 25%,#dc2743 50%,#d6249f 75%,#285AEB 100%); 
+}
+.redes-sociales .content-redes a .rrss.linkedin:hover {
+  background: #007bb5;
+}
+.redes-sociales .content-redes a .rrss.tiktok:hover {
+  background: #000000;
 }
 /* ********************************************** */
 /* FOOTER */
