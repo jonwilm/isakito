@@ -219,15 +219,20 @@ TYPE_PLAYER = [
 ]
 
 class Videos(Base):
-    type = models.CharField(
-        'Tipo de reproductor',
-        max_length=10,
-        choices=TYPE_PLAYER
-    )
+    # type = models.CharField(
+    #     'Tipo de reproductor',
+    #     max_length=10,
+    #     choices=TYPE_PLAYER
+    # )
     title = models.CharField(
         'Titulo del video',
         max_length=255
     )
+    # cover = models.ImageField(
+    #     'Imagen',
+    #     upload_to='slider-videos/',
+    #     help_text='Imagen poster del video',
+    # )
     code_yt = models.CharField(
         'Código de Youtube',
         max_length=20,
@@ -235,19 +240,19 @@ class Videos(Base):
         null=True,
         help_text='Código del video de youtube. **OPCIÓN RECOMENDADA** (Solo si el video esta alojado en YOUTUBE)'
     )
-    url_video = models.URLField(
-        'Url del video',
-        blank=True,
-        null=True,
-        help_text='Url del video (Solo si esta alojado en algun hosting externo)'
-    )
-    video = models.FileField(
-        'Video',
-        upload_to='slider-videos/',
-        blank=True,
-        null=True,
-        help_text='Cargar video en servidor (Utilizar como ultima opcion)'
-    )
+    # url_video = models.URLField(
+    #     'Url del video',
+    #     blank=True,
+    #     null=True,
+    #     help_text='Url del video (Solo si esta alojado en algun hosting externo)'
+    # )
+    # video = models.FileField(
+    #     'Video',
+    #     upload_to='slider-videos/',
+    #     blank=True,
+    #     null=True,
+    #     help_text='Cargar video en servidor (Utilizar como ultima opcion)'
+    # )
     active = models.BooleanField(
         'Activo',
         default=True,

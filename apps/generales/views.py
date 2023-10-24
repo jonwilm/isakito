@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 
-from .models import Logo, SliderHome, GalleryHome
+from .models import Logo, SliderHome, GalleryHome, Videos
 from apps.productos.models import Brand
 
 class HomeView(TemplateView):
@@ -14,10 +14,12 @@ class HomeView(TemplateView):
           galleryHome = GalleryHome.objects.get(active=True)
         except GalleryHome.DoesNotExist:
           galleryHome = None
+        videos = Videos.objects.filter(active=True)
         context = {
             'logo': logo,
             'sliderHome': sliderHome,
             'brands': brands,
             'galleryHome': galleryHome,
+            'videos': videos,
         }
         return context

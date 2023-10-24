@@ -47,7 +47,7 @@
 
 <div class="marcas py-5">
   <div class="container py-5">
-    <h1 class="text-bebas text-blue text-center mb-5">NUESTRAS MARCAS</h1>
+    <h1 class="text-bebas display-4 text-blue text-center mb-5">NUESTRAS MARCAS</h1>
     <div class="slider-marcas">
       {% for brand in brands %}
       <div>
@@ -94,79 +94,43 @@
 </div>
 {% endif %}
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<div class="videos-destacados py-5">
+  <div class="container py-5">
+    <h1 class="text-bebas display-4 text-blue text-center mb-5">VIDEOS DESTACADOS</h1>
+    <div class="slider-videos">
+      {% for video in videos %}
+      <div>
+        <a class="link-modalVideo" type="button" class="" data-bs-toggle="modal" data-bs-target="#modalVideo" data-title="{{ video.title }}" data-code-yt="{{ video.code_yt }}">
+          <img src="https://i3.ytimg.com/vi/{{ video.code_yt }}/maxresdefault.jpg" alt="{{ video.title }}">
+          <i class='bx bx-play-circle'></i>
+          <div class="screenhover">
+            {{ video.title|upper }}
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalVideo" tabindex="-1" aria-labelledby="modalVideoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-1" id="modalVideoLabel"></h1>
+        <a type="button" data-bs-dismiss="modal" aria-label="Close">
+          <i class='bx bx-x-circle bx-lg text-red'></i>
+        </a>
+      </div>
+      <div class="modal-body">
+        <div class="content-video">
+          <iframe id="player-video" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
 
 {% block js %}
@@ -200,6 +164,43 @@
       }
     }
     ]
-  });
+  })
+  $('.slider-videos').slick({
+    centerMode: true,
+    centerPadding: '60px',
+    slidesToShow: 3,
+    autoplay: true,
+    autoplaySpeed: 1500,
+    swipeToSlide: true,
+    responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        arrows: true,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 3
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        arrows: true,
+        dots: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 1
+      }
+    }
+    ]
+  })
+  $('.link-modalVideo').on('click', function() {
+    $('#modalVideoLabel').text($(this).attr('data-title'))
+    var link_yt = 'https://www.youtube.com/embed/' + $(this).attr('data-code-yt') + '?autoplay=1&amp;playsinline=1&amp;rel=0'
+    $('#player-video').prop('src', link_yt)
+  })
+  $('#modalVideo').on('hide.bs.modal', function() {
+    $('#player-video').prop('src', '')
+  })
 </script>
 {% endblock js %}

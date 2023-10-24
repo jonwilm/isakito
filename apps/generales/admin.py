@@ -80,7 +80,7 @@ class VideosResource(resources.ModelResource):
 
 
 class VideosAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ('title', 'type', 'active')
+    list_display = ('title', 'active')
     exclude = ('model_state',)
     ordering = ('-active',)
 

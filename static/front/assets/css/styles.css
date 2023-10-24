@@ -1,16 +1,22 @@
 :root {
   --white: #FFFFFF;
+  --white-rgb: 255, 255, 255;
   --black: #1D1D1D;
+  --black-rgb: 29, 29, 29;
   --gray: #CCCCCC;
+  --gray-rgb: 204, 204, 204;
   --red: #e0323e;
+  --red-rgb: 224, 50, 62;
   --orange: #dd5938;
+  --orange-rgb: 221, 89, 56;
   --yellow: #c5a330;
+  --yellow-rgb: 197, 163, 48;
   --green: #789d36;
+  --green-rgb: 120, 157, 54;
   --blue: #5170b7;
+  --blue-rgb: 81, 112, 183;
   --purple: #5844a4;
-
-  --carousel-control-prev-icon-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$carousel-control-color}'><path d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/></svg>");
-  --carousel-control-next-icon-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$carousel-control-color}'><path d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/></svg>");
+  --purple-rgb: 88, 68, 164;
 }
 /* ********************************************** */
 /* GLOBAL */
@@ -29,6 +35,9 @@ body {
 }
 .text-blue {
   color: var(--blue);
+}
+.text-red {
+  color: var(--red);
 }
 .link-black-blue {
   text-decoration: none;
