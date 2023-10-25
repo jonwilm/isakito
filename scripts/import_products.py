@@ -24,6 +24,8 @@ def run(*args):
                     break
 
                 if str(row[0].value).lower() != 'sku':
+                    images = str(row[5].value).split(",")
+                    imageProduct = images[0]
                     brand, create_brand = Brand.objects.update_or_create(
                         name=str(row[7].value),
                     )
@@ -31,6 +33,7 @@ def run(*args):
                         sku=str(row[0].value),
                         defaults={
                             'title': str(row[1].value),
+                            'image': imageProduct,
                             'description': str(row[2].value),
                             'price': str(row[3].value),
                             'ean': str(row[4].value),
@@ -44,7 +47,7 @@ def run(*args):
                             'weight': str(row[13].value),
                         }
                     )
-                    images = str(row[5].value).split(",")
+                    # print(imageProduct)
                     # print(str(row[0].value))
                     # print(images)
                     for image in images:

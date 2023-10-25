@@ -29,9 +29,7 @@
     <div class="carousel-inner">
       {% for slide in sliderBrand %}
       <div class="carousel-item {% if forloop.first %}active{% endif %}">
-        <a class="" href="{{ slide.link }}">
-          <img src="{{ slide.image.url }}" class="d-block w-100" alt="slide.title">
-        </a>
+        <img src="{{ slide.image.url }}" class="d-block w-100" alt="slide.title">
       </div>
       {% endfor %}
     </div>
@@ -53,8 +51,8 @@
     <div class="slider-productos">
       {% for product in products %}
       <div>
-        <a href="">
-          <img src="{{ product.logo }}" alt="{{ product.name }}">
+        <a href="{% url 'productos_app:producto' product.slug %}">
+          <img src="{{ product.image }}" alt="{{ product.title }}">
         </a>
       </div>
       {% endfor %}
@@ -75,7 +73,6 @@
 <script>
   $('.titulo-interna h1').text('{{ brand.name }}')
   $(window).ready(function() {
-    
     $('.slider-productos').slick({
       centerMode: true,
       centerPadding: '60px',

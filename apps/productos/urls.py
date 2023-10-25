@@ -15,4 +15,9 @@ urlpatterns = [
         views.BrandView.as_view(),
         name="marca",
     ),
+    path(
+        'productos/<slug:slug>',
+        views.ProductView.as_view(),
+        name="producto",
+    ),
 ]

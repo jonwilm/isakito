@@ -126,6 +126,11 @@ class Product(Base):
         max_length=255,
         unique=True,
     )
+    image = models.URLField(
+        'Url de la Imagen',
+        blank=True,
+        null=True,
+    )
     description = models.TextField(
         'Descripción',
         blank=True,
@@ -204,10 +209,12 @@ class Product(Base):
         blank=True,
         null=True,
     )
-    video = models.URLField(
-        'Url del video',
+    video = models.CharField(
+        'Código de Youtube',
+        max_length=20,
         blank=True,
         null=True,
+        help_text='Código del video de youtube. **OPCIÓN RECOMENDADA** (Solo si el video esta alojado en YOUTUBE)'
     )
     age = models.CharField(
         'Edad',
