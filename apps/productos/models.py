@@ -77,7 +77,7 @@ class SliderBrand(Base):
     image = models.ImageField(
         'Imagen',
         upload_to=generate_path_marca,
-        help_text='Imagen para el Slider de la Marca'
+        help_text='Imagen para el Slider de la Marca (USAR IMAGENES CON LA MISMA RELACION. RECOMENDADO 1920x700)'
     )
     order = models.IntegerField(
         'Orden',

@@ -1,0 +1,50 @@
+{% extends 'front/layout.html' %}
+{% load static %}
+
+{% block title %}Inicio{% endblock title %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'front/assets/css/marcas.css' %}">
+{% endblock stylesheet %}
+
+{% block css %}
+
+{% endblock css %}
+
+
+{% block content %}
+{% include 'front/components/navbar.html' with itemActive="marcas" %}
+
+{% include 'front/components/titulo-interna.html' with tituloInterna="NUESTRAS MARCAS" %}
+
+<div class="marcas py-5">
+  <div class="container py-5">
+    <div class="row">
+      {% for brand in brands %}
+      <div class="col-6 col-md-3 mb-5">
+        <div class="content">
+          <a href="{% url 'productos_app:marca' brand.slug %}">
+            <div class="content-img">
+              <img src="{{ brand.logo.url }}" alt="" class="w-75">
+            </div>
+            <h2 class="text-bebas text-center text-blue display-6">{{ brand.name }}</h2>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% include 'front/components/estadisticas.html' %}
+
+{% include 'front/components/newsletter.html' %}
+
+{% include 'front/components/redes.html' %}
+
+{% endblock %}
+
+
+{% block js %}
+
+{% endblock js %}

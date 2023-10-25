@@ -10,7 +10,7 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         try:
           logo = Logo.objects.get(active=True)
-        except GalleryHome.DoesNotExist:
+        except Logo.DoesNotExist:
           logo = None
         sliderHome = SliderHome.objects.filter(active=True)
         brands = Brand.objects.filter(active=True)
@@ -39,7 +39,7 @@ class UsView(TemplateView):
     def get_context_data(self, **kwargs):
         try:
           logo = Logo.objects.get(active=True)
-        except GalleryHome.DoesNotExist:
+        except Logo.DoesNotExist:
           logo = None
         items = Us.objects.filter(active=True)
         statistics = Statistic.objects.filter(active=True)

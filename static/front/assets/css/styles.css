@@ -30,6 +30,9 @@ html {
 body {
   padding-top: calc(70px + 2rem);
 }
+a {
+  text-decoration: none;
+}
 .text-bebas {
   font-family: 'Bebas Neue', sans-serif;
 }

@@ -1,0 +1,110 @@
+{% extends 'front/layout.html' %}
+{% load static %}
+
+{% block title %}Inicio{% endblock title %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'libs/slick-slider/slick.css' %}">
+<link rel="stylesheet" href="{% static 'libs/slick-slider/slick-theme.css' %}">
+<link rel="stylesheet" href="{% static 'front/assets/css/marca.css' %}">
+{% endblock stylesheet %}
+
+{% block css %}
+
+{% endblock css %}
+
+
+{% block content %}
+{% include 'front/components/navbar.html' %}
+
+{% include 'front/components/titulo-interna.html' %}
+
+<div class="slider slider-marca">
+  <div id="sliderMarca" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <!-- <div class="carousel-indicators mb-0 mb-sm-3">
+      <button type="button" data-bs-target="#sliderMarca" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#sliderMarca" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#sliderMarca" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div> -->
+    <div class="carousel-inner">
+      {% for slide in sliderBrand %}
+      <div class="carousel-item {% if forloop.first %}active{% endif %}">
+        <a class="" href="{{ slide.link }}">
+          <img src="{{ slide.image.url }}" class="d-block w-100" alt="slide.title">
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#sliderMarca" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#sliderMarca" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+<div class="marca py-5">
+  <div class="container">
+    <p class="text-center mb-5">{{ brand.description }}</p>
+    <h2 class="text-bebas text-center text-blue display-6 mb-5">PRODUCTOS</h2>
+    <div class="slider-productos">
+      {% for product in products %}
+      <div>
+        <a href="">
+          <img src="{{ product.logo }}" alt="{{ product.name }}">
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% include 'front/components/estadisticas.html' %}
+
+{% include 'front/components/newsletter.html' %}
+
+{% include 'front/components/redes.html' %}
+
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'libs/slick-slider/slick.min.js' %}"></script>
+<script>
+  $('.titulo-interna h1').text('{{ brand.name }}')
+  $(window).ready(function() {
+    
+    $('.slider-productos').slick({
+      centerMode: true,
+      centerPadding: '60px',
+      slidesToShow: 5,
+      autoplay: true,
+      autoplaySpeed: 1500,
+      swipeToSlide: true,
+      responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: true,
+          centerMode: true,
+          centerPadding: '40px',
+          slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          arrows: true,
+          dots: false,
+          centerMode: true,
+          centerPadding: '40px',
+          slidesToShow: 1
+        }
+      }
+      ]
+    })
+  })
+</script>
+{% endblock js %}

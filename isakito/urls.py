@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', include('apps.generales.urls')),
+    path('', include('apps.productos.urls')),
 
     path('accounts/login/', PanelLoginView.as_view(), name='panel-login'),
     path('panel/', include('apps.automatic_crud.urls')),
