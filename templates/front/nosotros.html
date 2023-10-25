@@ -1,0 +1,47 @@
+{% extends 'front/layout.html' %}
+{% load static %}
+
+{% block title %}Inicio{% endblock title %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'front/assets/css/nosotros.css' %}">
+{% endblock stylesheet %}
+
+{% block css %}
+
+{% endblock css %}
+
+
+{% block content %}
+{% include 'front/components/navbar.html' with itemActive="nosotros" %}
+
+{% include 'front/components/titulo-interna.html' with tituloInterna="NOSOTROS" %}
+
+<div class="nosotros py-5">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
+        <img src="{{ logo }}" alt="" class="img-us w-75">
+      </div>
+      {% for item in items %}
+      <div class="col-12 col-md-6 mt-5">
+        <h2 class="text-bebas text-center text-blue display-6">{{ item.title }}</h2>
+        <p>{{ item.text }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% include 'front/components/estadisticas.html' %}
+
+{% include 'front/components/newsletter.html' %}
+
+{% include 'front/components/redes.html' %}
+
+{% endblock %}
+
+
+{% block js %}
+
+{% endblock js %}

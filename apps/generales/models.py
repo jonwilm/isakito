@@ -199,6 +199,12 @@ class Us(Base):
         null=True,
         help_text='Texto de descriptivo del apartado'
     )
+    order = models.IntegerField(
+        'Orden',
+        blank=True,
+        null=True,
+        help_text='Orden en que aparecen los contenidos'
+    )
     active = models.BooleanField(
         'Activo',
         default=True,

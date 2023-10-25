@@ -69,7 +69,7 @@ class UsResource(resources.ModelResource):
 
 
 class UsAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ('title', 'active')
+    list_display = ('title', 'order', 'active')
     exclude = ('model_state',)
     ordering = ('-active',)
 
