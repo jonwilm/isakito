@@ -4,7 +4,7 @@
 {% block title %}Inicio{% endblock title %}
 
 {% block stylesheet %}
-<link rel="stylesheet" href="{% static 'front/assets/css/marcas.css' %}">
+<link rel="stylesheet" href="{% static 'front/assets/css/novedades.css' %}">
 {% endblock stylesheet %}
 
 {% block css %}
@@ -15,20 +15,20 @@
 {% block content %}
 {% include 'front/components/navbar.html' with itemActive="marcas" %}
 
-{% include 'front/components/titulo-interna.html' with tituloInterna="NUESTRAS MARCAS" %}
+{% include 'front/components/titulo-interna.html' with tituloInterna="NOVEDADES" %}
 
-<div class="marcas py-5">
+<div class="novedades py-5">
   <div class="container py-5">
     <div class="row">
-      {% for brand in brands %}
+      {% for news in newsList %}
       <div class="col-6 col-md-3 mb-5">
-        <div class="content">
-          <a href="{% url 'productos_app:marca' brand.slug %}">
-            <div class="content-img">
-              <img src="{{ brand.logo.url }}" alt="" class="w-75">
-            </div>
-            <h2 class="text-bebas text-center text-blue display-6">{{ brand.name }}</h2>
-          </a>
+        <div class="card w-100">
+          <img src="{{ news.image.url }}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{ news.title }}</h5>
+            <p class="card-text">{{ news.description }}</p>
+            <a href="#" class="btn btn-white-blue">Ver más</a>
+          </div>
         </div>
       </div>
       {% endfor %}
