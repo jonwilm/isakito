@@ -27,7 +27,7 @@
     <div class="carousel-inner">
       {% for slide in sliderHome %}
       <div class="carousel-item {% if forloop.first %}active{% endif %}">
-        <a class="" href="{{ slide.link }}">
+        <a class="" href="{% if slide.link == None %}#{% else %}{{ slide.link }}{% endif %}">
           <img src="{{ slide.image.url }}" class="d-block w-100" alt="slide.title">
         </a>
       </div>
@@ -50,7 +50,7 @@
     <div class="slider-marcas">
       {% for brand in brands %}
       <div>
-        <a href="">
+        <a href="{% url 'productos_app:marca' brand.slug %}">
           <img src="{{ brand.logo.url }}" alt="{{ brand.name }}">
         </a>
       </div>

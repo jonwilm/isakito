@@ -1,6 +1,6 @@
 <nav class="navbar fixed-top navbar-expand-lg py-0">
   <div class="container-fluid align-items-lg-start">
-    <a class="navbar-brand py-3" href="/">
+    <a class="navbar-brand py-3" href="{% url 'generales_app:home' %}">
       <img class="logo-navbar" src="{% if logo %}{{ logo.logo.url }}{% endif %}" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
@@ -20,10 +20,10 @@
           </ul>
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item mt-3 mt-lg-0">
-              <a class="nav-link {% if itemActive == 'nosotros' %}active{% endif %}" href="#">NOSOTROS</a>
+              <a class="nav-link {% if itemActive == 'nosotros' %}active{% endif %}" href="{% url 'generales_app:us' %}">NOSOTROS</a>
             </li>
             <li class="nav-item mt-3 mt-lg-0">
-              <a class="nav-link {% if itemActive == 'marcas' %}active{% endif %}" href="#">NUESTRAS MARCAS</a>
+              <a class="nav-link {% if itemActive == 'marcas' %}active{% endif %}" href="{% url 'productos_app:marcas' %}">NUESTRAS MARCAS</a>
             </li>
             <li class="nav-item mt-3 mt-lg-0">
               <a class="nav-link {% if itemActive == 'novedades' %}active{% endif %}" href="#">NOVEDADES</a>
