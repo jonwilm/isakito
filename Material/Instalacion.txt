@@ -1,3 +1,22 @@
 ** Could not find the GDAL library
 
 sudo apt-get install binutils libproj-dev gdal-bin
+
+**
+
+$ wget https://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-X.Y.Z.tar.gz
+$ tar xaf libspatialite-X.Y.Z.tar.gz
+$ cd libspatialite-X.Y.Z
+$ ./configure
+$ make
+$ sudo make install
+
+** 
+
+sudo add-apt-repository ppa:ubuntugis/ppa && sudo apt-get update
+sudo apt-get update
+sudo apt-get install gdal-bin
+sudo apt-get install libgdal-dev
+export CPLUS_INCLUDE_PATH=/usr/include/gdal
+export C_INCLUDE_PATH=/usr/include/gdal
+pip install GDAL
