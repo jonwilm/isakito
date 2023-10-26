@@ -1,4 +1,3 @@
-from ast import While
 import os
 from openpyxl import load_workbook
 from apps.productos.models import Brand, Product, ImagesProduct, ImportProducts

@@ -214,7 +214,7 @@ class Product(Base):
         max_length=20,
         blank=True,
         null=True,
-        help_text='Código del video de youtube. **OPCIÓN RECOMENDADA** (Solo si el video esta alojado en YOUTUBE)'
+        help_text='Código del video de youtube'
     )
     age = models.CharField(
         'Edad',
@@ -292,5 +292,5 @@ class ImportProducts(Base):
         return str(self.pk)
 
     class Meta:
-        verbose_name = 'Importar Producto'
-        verbose_name_plural = 'Importar Productos'
+        verbose_name = 'Archivo Excel'
+        verbose_name_plural = 'Archivos Excel'
