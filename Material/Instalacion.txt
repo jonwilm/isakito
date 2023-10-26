@@ -1,15 +1,40 @@
+**Python
+
+curl -O https://www.python.org/ftp/python/3.8.18/Python-3.8.18.tar.xz
+tar -xf Python-3.8.18.tar.xz
+Python-3.8.18
+./configure --enable-optimizations --enable-loadable-sqlite-extensions
+make -j 4
+sudo make altinstall
+
+sudo apt-get install gdal-bin
+sudo apt-get install libgdal-dev
+sudo apt-get install binutils
+export CPLUS_INCLUDE_PATH=/usr/include/gdal
+export C_INCLUDE_PATH=/usr/include/gdal
+
+sudo apt install libsqlite3-mod-spatialite
+
+python3.8 -m venv ../env-django/isakito
+python manage.py shell -c "import django;django.db.connection.cursor().execute('SELECT InitSpatialMetaData(1);')";
+
+
+
+
+
 ** Could not find the GDAL library
 
 sudo apt-get install binutils libproj-dev gdal-bin
 
 **
 
-$ wget https://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-X.Y.Z.tar.gz
-$ tar xaf libspatialite-X.Y.Z.tar.gz
-$ cd libspatialite-X.Y.Z
+$ wget https://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-5.0.0.tar.gz
+$ tar xaf libspatialite-5.0.0.tar.gz
+$ cd libspatialite-5.0.0
 $ ./configure
 $ make
 $ sudo make install
+$ sudo make allinstall
 
 ** 
 
