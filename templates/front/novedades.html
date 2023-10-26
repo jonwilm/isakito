@@ -13,7 +13,7 @@
 
 
 {% block content %}
-{% include 'front/components/navbar.html' with itemActive="marcas" %}
+{% include 'front/components/navbar.html' with itemActive="novedades" %}
 
 {% include 'front/components/titulo-interna.html' with tituloInterna="NOVEDADES" %}
 
@@ -21,13 +21,18 @@
   <div class="container py-5">
     <div class="row">
       {% for news in newsList %}
-      <div class="col-6 col-md-3 mb-5">
-        <div class="card w-100">
-          <img src="{{ news.image.url }}" class="card-img-top" alt="...">
+      <div class="col-6 col-md-4 mb-5">
+        <div class="card w-100 h-100">
+          <div class="content-img">
+            <img src="{{ news.image.url }}" class="card-img" alt="...">
+          </div>
           <div class="card-body">
-            <h5 class="card-title">{{ news.title }}</h5>
-            <p class="card-text">{{ news.description }}</p>
-            <a href="#" class="btn btn-white-blue">Ver más</a>
+            <div>
+              <h3 class="card-title text-bebas">{{ news.title }}</h3>
+              <h5>{{ news.subtitle }}</h5>
+              <p class="card-text">{{ news.description }}</p>
+            </div>
+            <a href="{% url 'novedades_app:novedad' news.slug %}" class="btn btn-white-blue mt-3">Ver más</a>
           </div>
         </div>
       </div>

@@ -19,6 +19,7 @@
 
 {% include 'front/components/titulo-interna.html' %}
 
+{% if sliderBrand %}
 <div class="slider slider-marca">
   <div id="sliderMarca" class="carousel slide carousel-fade" data-bs-ride="carousel">
     <!-- <div class="carousel-indicators mb-0 mb-sm-3">
@@ -43,6 +44,7 @@
     </button>
   </div>
 </div>
+{% endif %}
 
 <div class="marca py-5">
   <div class="container">
@@ -73,8 +75,13 @@
 <script>
   $('.titulo-interna h1').text('{{ brand.name }}')
   $(window).ready(function() {
+    var lenProducts = {{ products|length }}
+    var centerProducts = false
+    if (lenProducts > 3) {
+      centerProducts = true
+    }
     $('.slider-productos').slick({
-      centerMode: true,
+      centerMode: centerProducts,
       centerPadding: '60px',
       slidesToShow: 5,
       autoplay: true,
@@ -85,7 +92,7 @@
         breakpoint: 768,
         settings: {
           arrows: true,
-          centerMode: true,
+          centerMode: centerProducts,
           centerPadding: '40px',
           slidesToShow: 3
         }
@@ -95,7 +102,7 @@
         settings: {
           arrows: true,
           dots: false,
-          centerMode: true,
+          centerMode: centerProducts,
           centerPadding: '40px',
           slidesToShow: 1
         }

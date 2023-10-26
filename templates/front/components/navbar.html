@@ -15,7 +15,7 @@
         <div class="">
           <ul class="navbar-nav pre-nav justify-content-end flex-grow-1 pe-3 mb-3">
             <li class="nav-item">
-              <a class="nav-link" href="#">CORREDORES</a>
+              <a class="nav-link" target="_blank" href="https://isakito.listas360.com.ar/">CORREDORES</a>
             </li>
           </ul>
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
@@ -26,13 +26,13 @@
               <a class="nav-link {% if itemActive == 'marcas' %}active{% endif %}" href="{% url 'productos_app:marcas' %}">NUESTRAS MARCAS</a>
             </li>
             <li class="nav-item mt-3 mt-lg-0">
-              <a class="nav-link {% if itemActive == 'novedades' %}active{% endif %}" href="{% url 'productos_app:novedades' %}">NOVEDADES</a>
+              <a class="nav-link {% if itemActive == 'novedades' %}active{% endif %}" href="{% url 'novedades_app:novedades' %}">NOVEDADES</a>
             </li>
             <li class="nav-item mt-3 mt-lg-0">
               <a class="nav-link {% if itemActive == 'puntos' %}active{% endif %}" href="#">PUNTOS DE VENTA</a>
             </li>
             <li class="nav-item mt-3 mt-lg-0">
-              <a class="nav-link {% if itemActive == 'contacto' %}active{% endif %}" href="#">CONTACTO</a>
+              <a class="nav-link {% if itemActive == 'contacto' %}active{% endif %}" href="{% url 'generales_app:contacto' %}">CONTACTO</a>
             </li>
             <li class="nav-item mt-3 mt-lg-0">
               <a class="nav-link" href="#">CATALOGO</a>

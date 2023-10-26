@@ -1,0 +1,132 @@
+{% extends 'front/layout.html' %}
+{% load static %}
+
+{% block title %}Inicio{% endblock title %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'front/assets/css/contacto.css' %}">
+{% endblock stylesheet %}
+
+{% block css %}
+
+{% endblock css %}
+
+
+{% block content %}
+{% include 'front/components/navbar.html' with itemActive="contacto" %}
+
+{% include 'front/components/titulo-interna.html' with tituloInterna="CONTACTO" %}
+
+<div class="contacto py-5">
+  <div class="container py-5">
+    {% if dataContact %}
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-3 mt-3">
+        <div class="content-data text-center h-100">
+          <div class="icon">
+            <i class='bx bx-map display-1'></i>
+          </div>
+          <p class="m-0 text-bebas">{{ dataContact.address }}</p>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-3 mt-3">
+        <a class="link-black-blue" href="tel:{{ dataContact.phone|cut:' '|cut:'-'|cut:'_' }}">
+          <div class="content-data text-center h-100">
+            <div class="icon">
+              <i class='bx bx-phone display-1'></i>
+            </div>
+            <p class="m-0 text-bebas">{{ dataContact.phone }}</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-12 col-md-6 col-lg-3 mt-3">
+        <a class="link-black-blue" href="https://api.whatsapp.com/send?phone={{ dataContact.phone|cut:' '|cut:'-'|cut:'_'|cut:'+' }}" target="_blank">
+          <div class="content-data text-center h-100">
+            <div class="icon">
+              <i class='bx bxl-whatsapp display-1'></i>
+            </div>
+            <p class="m-0 text-bebas">{{ dataContact.whatsapp }}</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-12 col-md-6 col-lg-3 mt-3">
+        <a class="link-black-blue" href="mailto:{{ dataContact.email }}">
+          <div class="content-data text-center h-100">
+            <div class="icon">
+              <i class='bx bx-envelope display-1'></i>
+            </div>
+            <p class="m-0 text-bebas">{{ dataContact.email }}</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-12 mt-5">
+        <p class="text-center">
+          {{ dataContact.description }}
+        </p>
+      </div>
+    </div>
+    {% endif %}
+    <h1 class="text-bebas display-4 text-blue text-center mt-5">CONTACTANOS</h1>
+    <div class="form mt-5">
+      <form id="contactForm" action="{% url 'generales_app:contact-mail' %}" method="post" role="form">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-12 col-md-4 mb-3">
+            <label class="form-label text-bebas" for="full_name">Nombre y Apellido</label>
+            <input type="text" name="full_name" class="form-control" id="full_name" placeholder="Nombre y Apellido" required="">
+          </div>
+          <div class="col-12 col-md-4 mb-3">
+            <label class="form-label text-bebas" for="email">Correo eléctronico</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="Correo eléctronico" required="">
+          </div>
+          <div class="col-12 col-md-4 mb-3">
+            <label class="form-label text-bebas" for="phone">Teléfono</label>
+            <input type="text" class="form-control" name="phone" id="phone" placeholder="Teléfono" required="">
+          </div>
+          <div class="col-12 mb-3">
+            <label class="form-label text-bebas" for="subject">Asunto</label>
+            <input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto" required="">
+          </div>
+          <div class="col-12 mb-3">
+            <label for="message" class="form-label text-bebas">Mensaje</label>
+            <textarea class="form-control" name="message" id="message" placeholder="Mensaje" required="" rows="5"></textarea>
+          </div>
+        </div>
+        <div class="d-grid mt-3">
+          <button type="submit" name="submit" id="sendBtn" class="btn btn-blue-white">
+            <span id="textBtn" class="">ENVIAR</span>
+            <span id="spinnerBtn" class="d-none"><img src="{% static 'images/spinner.svg' %}" alt="" style="width: 1.5rem;"></span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} alert-dismissible fade show p-5" role="alert">
+  <p class="mb-0 text-center">{{message}}</p>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+{% include 'front/components/estadisticas.html' %}
+
+{% include 'front/components/newsletter.html' %}
+
+{% include 'front/components/redes.html' %}
+
+{% endblock %}
+
+
+{% block js %}
+<script>
+  $("#contactForm").submit(function(e){
+    $('#textBtn').addClass('d-none')
+    $('#spinnerBtn').removeClass('d-none')
+    $("#submit").attr("disabled", "disabled");
+  })
+</script>
+{% endblock js %}

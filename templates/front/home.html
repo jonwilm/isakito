@@ -17,6 +17,7 @@
 {% block content %}
 {% include 'front/components/navbar.html' with itemActive="home" %}
 
+{% if sliderHome %}
 <div class="slider slider-home">
   <div id="sliderHome" class="carousel slide carousel-fade" data-bs-ride="carousel">
     <!-- <div class="carousel-indicators mb-0 mb-sm-3">
@@ -43,7 +44,9 @@
     </button>
   </div>
 </div>
+{% endif %}
 
+{% if brands %}
 <div class="marcas py-5">
   <div class="container py-5">
     <h1 class="text-bebas display-4 text-blue text-center mb-5">NUESTRAS MARCAS</h1>
@@ -58,6 +61,7 @@
     </div>
   </div>
 </div>
+{% endif %}
 
 {% if galleryHome %}
 <div class="gallery-home py-5">

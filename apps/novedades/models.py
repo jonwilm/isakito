@@ -17,7 +17,7 @@ class News(Base):
         upload_to=generate_path_novedades,
         blank=True,
         null=True,
-        help_text='Imagen destacada del Post'
+        help_text='Imagen destacada del Post. Recomendado. Relacion 16/9. 1920x1080'
     )
     slug = models.SlugField(
         'URL',

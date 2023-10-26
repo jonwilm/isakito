@@ -6,12 +6,12 @@ app_name = "novedades_app"
 
 urlpatterns = [
     path(
-        '',
+        'novedades',
         views.NewsListView.as_view(),
         name='novedades',
     ),
     path(
-        'nosotros',
+        'novedades/<slug:slug>',
         views.NewsView.as_view(),
         name='novedad',
     ),

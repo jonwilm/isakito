@@ -19,7 +19,19 @@
 
 <div class="novedad py-5">
   <div class="container py-5">
-    
+    <div class="row">
+      <div class="col-12">
+        <div class="box-content">
+          <div class="content-img">
+            <img src="{{ news.image.url }}" alt="">
+          </div>
+          <h2 class="text-bebas text-blue display-6 mb-0">{{ news.title }}</h2>
+          <h3 class="fs-3 fw-bold mb-3">{{ news.subtitle }}</h3>
+          <h5 class="fs-5 mb-3">{{ news.date_created|date:"D, d M Y" }}</h5>
+          <div id="content">{{ news.content|safe }}</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -34,6 +46,6 @@
 {% block js %}
 <script src="{% static 'libs/slick-slider/slick.min.js' %}"></script>
 <script>
-  $('.titulo-interna h1').text('{{ news.name }}')
+  $('.titulo-interna h1').text('{{ news.title }}')
 </script>
 {% endblock js %}

@@ -12,7 +12,7 @@ class NewsListView(TemplateView):
           logo = Logo.objects.get(active=True)
         except Logo.DoesNotExist:
           logo = None
-        newsList = News.objects.filter(active=True).order_by('date_create')
+        newsList = News.objects.filter(active=True).order_by('date_created')
         statistics = Statistic.objects.filter(active=True)
         socialNetworks = SocialNetwork.objects.filter(active=True)
         context = {

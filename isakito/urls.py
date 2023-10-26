@@ -32,3 +32,8 @@ urlpatterns = [
     path('panel/', include('apps.automatic_crud.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+admin.site.site_header = 'ISAKITO'
+admin.site.index_title = 'Panel de Administración'
+admin.site.site_title = 'Isakito'

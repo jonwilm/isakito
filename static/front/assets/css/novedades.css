@@ -1,0 +1,38 @@
+.novedades .card .content-img {
+  position: relative;
+  width: 100%;
+  padding-bottom: 60%;
+  overflow: hidden;
+}
+.novedades .card .content-img .card-img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  object-position: center;
+}
+.novedades .card .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.novedad .content-img {
+  position: relative;
+  width: 50%;
+  padding-bottom: 28.12%;
+  overflow: hidden;
+  float: left;
+  margin: 0 1.5rem 1rem 0;
+}
+.novedad .content-img img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  object-position: center;
+}

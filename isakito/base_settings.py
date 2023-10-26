@@ -147,4 +147,20 @@ MAP_WIDGETS = {
     "GOOGLE_MAP_API_KEY": "AIzaSyA_B8ATqmugsxXEQ1bgew8ZQi5hdD3uS3I"
 }
 
+
 SPATIALITE_LIBRARY_PATH = '/usr/local/lib/mod_spatialite.so'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST = 'smtp.mandrillapp.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'jparedes84@gmail.com'
+# EMAIL_HOST_USER = 'NeexCorp'
+EMAIL_HOST_PASSWORD = 'nviw yqtz zteu ketc'
+# EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = True
+
+
+# EMAIL_CONTACT_ISAKITO = ''
+EMAIL_CONTACT_ISAKITO = 'jparedes84@gmail.com'

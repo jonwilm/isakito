@@ -1,0 +1,52 @@
+<!DOCTYPE >
+<html>
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #cccccc;
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .logo img {
+            width: 100%;
+            max-width: 150px;
+        }
+        .content-form {
+            background-color: #ffffff;
+            padding: 1rem;
+            border-radius: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="" alt="">
+        </div>
+        <p style="text-align: center; margin-bottom: 2rem;"><strong>Contacto desde IsakitoWeb</strong></p>
+        <div class="content-form">
+            <p style="margin-bottom: 1rem;"><strong>Nombre y Apellido: </strong>{{ full_name }}</p>
+            <p style="margin-bottom: 1rem;"><strong>Correo eléctronico: </strong>{{ email }}</p>
+            <p style="margin-bottom: 1rem;"><strong>Teléfono: </strong>{{ phone }}</p>
+            <p style="margin-bottom: 1rem;"><strong>Asunto: </strong>{{ subject }}</p>
+            <p style="margin-bottom: 1rem;"><strong>Mensaje:</strong></p>
+            <p>{{ message }}</p>
+        </div>
+    </div>
+</body>
+</html>

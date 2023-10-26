@@ -15,4 +15,14 @@ urlpatterns = [
         views.UsView.as_view(),
         name='us',
     ),
+    path(
+        'contacto',
+        views.ContactView.as_view(),
+        name='contacto',
+    ),
+    path(
+        'sendmail',
+        views.MailContact,
+        name='contact-mail',
+    ),
 ]

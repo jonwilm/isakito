@@ -81,6 +81,34 @@ a {
   background-color: var(--white);
   color: var(--blue);
 }
+.btn-blue-white {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  background-color: var(--blue);
+  color: var(--white);
+  border: 1px solid var(--white);
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+  box-shadow: 1px 1px 0px 1px var(--white);
+  transition: all 0.3s;
+}
+.btn-blue-white.active {
+  background-color: var(--white);
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  box-shadow: 1px 1px 0px 1px var(--blue);
+}
+.btn-blue-white:hover {
+  background-color: var(--white);
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  box-shadow: 1px 1px 0px 1px var(--blue);
+}
+.btn-blue-white:focus {
+  background-color: var(--blue);
+  color: var(--white);
+  border: 1px solid var(--blue);
+  box-shadow: 1px 1px 0px 1px var(--blue);
+}
 /* ********************************************** */
 /* CAROUSEL */
 /* ********************************************** */
