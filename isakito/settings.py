@@ -5,7 +5,7 @@ DEBUG = False
 
 # Production
 # -------------------------------------
-ALLOWED_HOSTS = ['isakitoweb.com.ar']
+ALLOWED_HOSTS = ['new.isakitoweb.com.ar']
 
 
 # Static files (CSS, JavaScript, Images)
@@ -15,7 +15,7 @@ ALLOWED_HOSTS = ['isakitoweb.com.ar']
 # -------------------------------------
 STATIC_ROOT = 'static/'
 MEDIA_ROOT = 'media/'
-SITE_URL = 'isakitoweb.com.ar'
+SITE_URL = 'new.isakitoweb.com.ar'
 MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 
