@@ -293,11 +293,17 @@ class PointOfSale(Base):
         'Localidad',
         max_length=255
     )
-    coordinates = models.PointField(
-        'Ubicacion en mapa',
+    coord = models.CharField(
+        'Coordenadas',
+        max_length=255,
         blank=True,
         null=True,
     )
+    # coordinates = models.PointField(
+    #     'Ubicacion en mapa',
+    #     blank=True,
+    #     null=True,
+    # )
     active = models.BooleanField(
         'Active',
         default=True,

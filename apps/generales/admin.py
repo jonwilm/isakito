@@ -91,10 +91,10 @@ class VideosAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
 
 class PointOfSaleAdmin(admin.ModelAdmin):
-    formfield_overrides = {
-        models.PointField: {"widget": GooglePointFieldWidget}
-    }
-    list_display = ('name', 'active')
+    # formfield_overrides = {
+    #     models.PointField: {"widget": GooglePointFieldWidget}
+    # }
+    list_display = ('name', 'coord', 'active')
     exclude = ('model_state',)
     ordering = ('-active',)
 

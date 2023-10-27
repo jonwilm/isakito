@@ -6,9 +6,9 @@ from .models import PointOfSale
 class PointOfSaleResource(ModelResource):
     
     def dehydrate(self, bundle):
-        del bundle.data['coordinates']
-        bundle.data['lat'] = bundle.obj.coordinates.y
-        bundle.data['lng'] = bundle.obj.coordinates.x
+        del bundle.data['coord']
+        bundle.data['lat'] = bundle.obj.coord.y
+        bundle.data['lng'] = bundle.obj.coord.x
         return bundle
 
     class Meta:

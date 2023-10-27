@@ -133,22 +133,22 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-MAP_WIDGETS = {
-    "GooglePointFieldWidget": (
-        ("zoom", 15),
-        ("mapCenterLocationName", "Buenos Aires"),
-        ("GooglePlaceAutocompleteOptions",
-            {'componentRestrictions': {'country': 'ar'}}
-        ),
-        ("markerFitZoom", 16),
-        ("scrollWheel", True),
-        ("streetViewControl", True),
-    ),
-    "GOOGLE_MAP_API_KEY": "AIzaSyA_B8ATqmugsxXEQ1bgew8ZQi5hdD3uS3I"
-}
+# MAP_WIDGETS = {
+#     "GooglePointFieldWidget": (
+#         ("zoom", 15),
+#         ("mapCenterLocationName", "Buenos Aires"),
+#         ("GooglePlaceAutocompleteOptions",
+#             {'componentRestrictions': {'country': 'ar'}}
+#         ),
+#         ("markerFitZoom", 16),
+#         ("scrollWheel", True),
+#         ("streetViewControl", True),
+#     ),
+#     "GOOGLE_MAP_API_KEY": "AIzaSyA_B8ATqmugsxXEQ1bgew8ZQi5hdD3uS3I"
+# }
 
 
-SPATIALITE_LIBRARY_PATH = '/usr/local/lib/mod_spatialite.so'
+# SPATIALITE_LIBRARY_PATH = '/usr/local/lib/mod_spatialite.so'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
