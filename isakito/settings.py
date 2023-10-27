@@ -1,11 +1,11 @@
 from .base_settings import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # Production
 # -------------------------------------
-ALLOWED_HOSTS = ['new.isakitoweb.com.ar']
+ALLOWED_HOSTS = ['nuevo.isakitoweb.com.ar']
 
 
 # Static files (CSS, JavaScript, Images)
@@ -15,7 +15,7 @@ ALLOWED_HOSTS = ['new.isakitoweb.com.ar']
 # -------------------------------------
 STATIC_ROOT = 'static/'
 MEDIA_ROOT = 'media/'
-SITE_URL = 'new.isakitoweb.com.ar'
+SITE_URL = 'nuevo.isakitoweb.com.ar'
 MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 
