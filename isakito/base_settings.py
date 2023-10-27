@@ -46,7 +46,7 @@ THIRDS_APPS = [
     'ckeditor',
     'mapwidgets',
     'django_extensions',
-    # 'tastypie',
+    'tastypie',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRDS_APPS
