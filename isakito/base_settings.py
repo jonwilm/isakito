@@ -42,11 +42,11 @@ LOCAL_APPS = [
 ]
 
 THIRDS_APPS = [
-    # 'import_export',
+    'import_export',
     'ckeditor',
     'mapwidgets',
     'django_extensions',
-    # 'tastypie',
+    'tastypie',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRDS_APPS

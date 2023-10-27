@@ -6,23 +6,15 @@ from django.db import models
 from .models import News
 
 
-class NewsAdmin(admin.ModelAdmin):
+class NewsResource(resources.ModelResource):
+    class Meta:
+        model: News
+
+
+class NewsAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('title', 'date_created', 'active')
     exclude = ('model_state', 'slug')
     ordering = ('-active', 'date_created')
 
 
 admin.site.register(News, NewsAdmin)
-
-# class NewsResource(resources.ModelResource):
-#     class Meta:
-#         model: News
-
-
-# class NewsAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-#     list_display = ('title', 'date_created', 'active')
-#     exclude = ('model_state', 'slug')
-#     ordering = ('-active', 'date_created')
-
-
-# admin.site.register(News, NewsAdmin)
