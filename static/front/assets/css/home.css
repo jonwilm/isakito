@@ -1,3 +1,17 @@
+.slider-home.mobile {
+  display: block;
+}
+.slider-home.desktop {
+  display: none;
+}
+@media (orientation: landscape) {
+  .slider-home.mobile {
+    display: none;
+  }
+  .slider-home.desktop {
+    display: block;
+  }
+}
 .slider-marcas .slick-track {
   display: flex;
   align-items: center;
@@ -53,7 +67,7 @@
   grid-template-columns: repeat(1, 3fr 4fr 3fr);
   grid-template-rows: repeat(3, 20vh);
   grid-gap: 5px;
-  background-color: var(--blue);
+  background-color: var(--white);
 }
 .gallery-home [class^="item"] {
   overflow: hidden;

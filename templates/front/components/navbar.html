@@ -1,5 +1,5 @@
 <nav class="navbar fixed-top navbar-expand-lg py-0">
-  <div class="container-fluid align-items-lg-start">
+  <div class="container align-items-lg-start">
     <a class="navbar-brand py-3" href="{% url 'generales_app:home' %}">
       <img class="logo-navbar" src="{% if logo %}{{ logo.logo.url }}{% endif %}" alt="">
     </a>
@@ -20,22 +20,22 @@
           </ul>
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item mt-3 mt-lg-0">
-              <a class="nav-link {% if itemActive == 'nosotros' %}active{% endif %}" href="{% url 'generales_app:us' %}">NOSOTROS</a>
+              <a class="nav-link btn-underline-from-center {% if itemActive == 'nosotros' %}active{% endif %}" href="{% url 'generales_app:us' %}">NOSOTROS</a>
             </li>
             <li class="nav-item mt-3 mt-lg-0">
-              <a class="nav-link {% if itemActive == 'marcas' %}active{% endif %}" href="{% url 'productos_app:marcas' %}">NUESTRAS MARCAS</a>
+              <a class="nav-link btn-underline-from-center {% if itemActive == 'marcas' %}active{% endif %}" href="{% url 'productos_app:marcas' %}">NUESTRAS MARCAS</a>
             </li>
             <li class="nav-item mt-3 mt-lg-0">
-              <a class="nav-link {% if itemActive == 'novedades' %}active{% endif %}" href="{% url 'novedades_app:novedades' %}">NOVEDADES</a>
+              <a class="nav-link btn-underline-from-center {% if itemActive == 'novedades' %}active{% endif %}" href="{% url 'novedades_app:novedades' %}">NOVEDADES</a>
             </li>
             <li class="nav-item mt-3 mt-lg-0">
-              <a class="nav-link {% if itemActive == 'puntos' %}active{% endif %}" href="#">PUNTOS DE VENTA</a>
+              <a class="nav-link btn-underline-from-center {% if itemActive == 'puntos' %}active{% endif %}" href="#">PUNTOS DE VENTA</a>
             </li>
             <li class="nav-item mt-3 mt-lg-0">
-              <a class="nav-link {% if itemActive == 'contacto' %}active{% endif %}" href="{% url 'generales_app:contacto' %}">CONTACTO</a>
+              <a class="nav-link btn-underline-from-center {% if itemActive == 'contacto' %}active{% endif %}" href="{% url 'generales_app:contacto' %}">CONTACTO</a>
             </li>
             <li class="nav-item mt-3 mt-lg-0">
-              <a class="nav-link" href="#">CATALOGO</a>
+              <a class="nav-link btn-underline-from-center" href="#">CATALOGO</a>
             </li>
           </ul>
         </div>

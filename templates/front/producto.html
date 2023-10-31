@@ -1,7 +1,7 @@
 {% extends 'front/layout.html' %}
 {% load static %}
 
-{% block title %}Inicio{% endblock title %}
+{% block title %}{{ product.title }}{% endblock title %}
 
 {% block stylesheet %}
 <link rel="stylesheet" href="{% static 'libs/slick-slider/slick.css' %}">
@@ -19,7 +19,7 @@
 
 {% include 'front/components/titulo-interna.html' %}
 
-<div class="producto py-5">
+<div class="producto py-3 py-md-5">
   <div class="container">
     <div class="row">
       <div class="col-12 col-md-6">
@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="col-12 col-md-6 d-flex flex-column justify-content-center">
-        <h2 class="text-bebas text-center text-blue display-6 mb-5">{{ product.title }}</h2>
+        <h2 class="text-bebas text-center text-blue display-6 mt-3 mt-md-0 mb-3">{{ product.title }}</h2>
         <p class=""><strong>Codigo: </strong>{{ product.sku }}</p>
         {% if product.age %}
         <p class=""><strong>Edad: </strong>{{ product.age }}</p>

@@ -17,28 +17,56 @@
 {% block content %}
 {% include 'front/components/navbar.html' with itemActive="home" %}
 
-{% if sliderHome %}
-<div class="slider slider-home">
-  <div id="sliderHome" class="carousel slide carousel-fade" data-bs-ride="carousel">
-    <!-- <div class="carousel-indicators mb-0 mb-sm-3">
-      <button type="button" data-bs-target="#sliderHome" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#sliderHome" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#sliderHome" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div> -->
-    <div class="carousel-inner">
-      {% for slide in sliderHome %}
-      <div class="carousel-item {% if forloop.first %}active{% endif %}">
+{% if sliderHomeDesktop %}
+<div class="slider slider-home desktop" data-aos="fade-in">
+  <div id="sliderHomeDesktop" class="carousel slide carousel-fade" data-bs-ride="carousel" style="height: 75vh;">
+    <div class="carousel-indicators mb-0 mb-sm-3">
+      {% for slide in sliderHomeDesktop %}
+      <button type="button" data-bs-target="#sliderHomeDesktop" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="true" aria-label="Slide {{ forloop.counter }}"></button>
+      {% endfor %}
+    </div>
+    <div class="carousel-inner h-100">
+      {% for slide in sliderHomeDesktop %}
+      <div class="carousel-item h-100 {% if forloop.first %}active{% endif %}">
         <a class="" href="{% if slide.link == None %}#{% else %}{{ slide.link }}{% endif %}">
-          <img src="{{ slide.image.url }}" class="d-block w-100" alt="slide.title">
+          <img src="{{ slide.image.url }}" class="d-block w-100 h-100" alt="slide.title" style="object-fit: cover; object-position: center;">
         </a>
       </div>
       {% endfor %}
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#sliderHome" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#sliderHomeDesktop" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#sliderHome" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#sliderHomeDesktop" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+{% endif %}
+{% if sliderHomeMobile %}
+<div class="slider slider-home mobile" data-aos="fade-in">
+  <div id="sliderHomeMobile" class="carousel slide carousel-fade" data-bs-ride="carousel" style="height: 75vh;">
+    <div class="carousel-indicators mb-0 mb-sm-3">
+      {% for slide in sliderHomeMobile %}
+      <button type="button" data-bs-target="#sliderHomeMobile" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="true" aria-label="Slide {{ forloop.counter }}"></button>
+      {% endfor %}
+    </div>
+    <div class="carousel-inner h-100">
+      {% for slide in sliderHomeMobile %}
+      <div class="carousel-item h-100 {% if forloop.first %}active{% endif %}">
+        <a class="" href="{% if slide.link == None %}#{% else %}{{ slide.link }}{% endif %}">
+          <img src="{{ slide.image.url }}" class="d-block w-100 h-100" alt="slide.title" style="object-fit: cover; object-position: center;">
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#sliderHomeMobile" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#sliderHomeMobile" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
@@ -47,10 +75,10 @@
 {% endif %}
 
 {% if brands %}
-<div class="marcas py-5">
-  <div class="container py-5">
-    <h1 class="text-bebas display-4 text-blue text-center mb-5">NUESTRAS MARCAS</h1>
-    <div class="slider-marcas">
+<div class="marcas py-3 py-md-5">
+  <div class="container">
+    <h1 class="text-bebas display-4 text-blue text-center mb-5 title-js" data-aos="fade-up">NUESTRAS MARCAS</h1>
+    <div class="slider-marcas" data-aos="fade-up">
       {% for brand in brands %}
       <div>
         <a href="{% url 'productos_app:marca' brand.slug %}">
@@ -64,30 +92,30 @@
 {% endif %}
 
 {% if galleryHome %}
-<div class="gallery-home py-5">
+<div class="gallery-home py-3 py-md-5">
   <div class="container">
     <div class="wrapper">
-      <div class="itemV1">
+      <div class="itemV1" data-aos="fade-in" data-aos-delay="0">
         <a href="{% if galleryHome.linkV1 == None %}#{% else %}{{ galleryHome.linkV1 }}{% endif %}">
           <img src="{{ galleryHome.imageV1.url }}" alt="">
         </a>
       </div>
-      <div class="itemV2">
+      <div class="itemV2" data-aos="fade-in" data-aos-delay="100">
         <a href="{% if galleryHome.linkV2 == None %}#{% else %}{{ galleryHome.linkV2 }}{% endif %}">
           <img src="{{ galleryHome.imageV2.url }}" alt="">
         </a>
       </div>
-      <div class="itemH1">
+      <div class="itemH1" data-aos="fade-in" data-aos-delay="200">
         <a href="{% if galleryHome.linkH1 == None %}#{% else %}{{ galleryHome.linkH1 }}{% endif %}">
           <img src="{{ galleryHome.imageH1.url }}" alt="">
         </a>
       </div>
-      <div class="itemH2">
+      <div class="itemH2" data-aos="fade-in" data-aos-delay="300">
         <a href="{% if galleryHome.linkH2 == None %}#{% else %}{{ galleryHome.linkH2 }}{% endif %}">
           <img src="{{ galleryHome.imageH2.url }}" alt="">
         </a>
       </div>
-      <div class="itemC">
+      <div class="itemC" data-aos="fade-in" data-aos-delay="400">
         <a href="{% if galleryHome.linkC == None %}#{% else %}{{ galleryHome.linkC }}{% endif %}">
           <img src="{{ galleryHome.imageC.url }}" alt="">
         </a>
@@ -98,10 +126,10 @@
 {% endif %}
 
 {% if videos %}
-<div class="videos-destacados py-5">
-  <div class="container py-5">
-    <h1 class="text-bebas display-4 text-blue text-center mb-5">VIDEOS DESTACADOS</h1>
-    <div class="slider-videos">
+<div class="videos-destacados py-3 py-md-5">
+  <div class="container">
+    <h1 class="text-bebas display-4 text-blue text-center mb-5" data-aos="fade-up">VIDEOS DESTACADOS</h1>
+    <div class="slider-videos" data-aos="fade-up">
       {% for video in videos %}
       <div>
         <a class="link-modalVideo" type="button" class="" data-bs-toggle="modal" data-bs-target="#modalVideo" data-title="{{ video.title }}" data-code-yt="{{ video.code_yt }}">
@@ -148,7 +176,6 @@
 <script src="{% static 'libs/slick-slider/slick.min.js' %}"></script>
 <script>
   $(window).ready(function() {
-    
     $('.slider-marcas').slick({
       centerMode: true,
       centerPadding: '60px',
@@ -201,7 +228,7 @@
         }
       },
       {
-        breakpoint: 480,
+        breakpoint: 576,
         settings: {
           arrows: true,
           dots: false,

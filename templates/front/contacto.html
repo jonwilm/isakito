@@ -1,7 +1,7 @@
 {% extends 'front/layout.html' %}
 {% load static %}
 
-{% block title %}Inicio{% endblock title %}
+{% block title %}Contacto{% endblock title %}
 
 {% block stylesheet %}
 <link rel="stylesheet" href="{% static 'front/assets/css/contacto.css' %}">
@@ -17,58 +17,58 @@
 
 {% include 'front/components/titulo-interna.html' with tituloInterna="CONTACTO" %}
 
-<div class="contacto py-5">
-  <div class="container py-5">
+<div class="contacto py-3 py-md-5">
+  <div class="container">
     {% if dataContact %}
     <div class="row">
       <div class="col-12 col-md-6 col-lg-3 mt-3">
-        <div class="content-data text-center h-100">
+        <div class="content-data text-center h-100" data-aos="fade-up" data-aos-delay="0">
           <div class="icon">
-            <i class='bx bx-map display-1'></i>
+            <i class='bx bx-map bx-lg'></i>
           </div>
-          <p class="m-0 text-bebas">{{ dataContact.address }}</p>
+          <p class="m-0 ms-3 text-bebas text-start">{{ dataContact.address }}</p>
         </div>
       </div>
       <div class="col-12 col-md-6 col-lg-3 mt-3">
         <a class="link-black-blue" href="tel:{{ dataContact.phone|cut:' '|cut:'-'|cut:'_' }}">
-          <div class="content-data text-center h-100">
+          <div class="content-data text-center h-100" data-aos="fade-up" data-aos-delay="100">
             <div class="icon">
-              <i class='bx bx-phone display-1'></i>
+              <i class='bx bx-phone bx-lg'></i>
             </div>
-            <p class="m-0 text-bebas">{{ dataContact.phone }}</p>
+            <p class="m-0 ms-3 text-bebas text-start">{{ dataContact.phone }}</p>
           </div>
         </a>
       </div>
       <div class="col-12 col-md-6 col-lg-3 mt-3">
         <a class="link-black-blue" href="https://api.whatsapp.com/send?phone={{ dataContact.phone|cut:' '|cut:'-'|cut:'_'|cut:'+' }}" target="_blank">
-          <div class="content-data text-center h-100">
+          <div class="content-data text-center h-100" data-aos="fade-up" data-aos-delay="200">
             <div class="icon">
-              <i class='bx bxl-whatsapp display-1'></i>
+              <i class='bx bxl-whatsapp bx-lg'></i>
             </div>
-            <p class="m-0 text-bebas">{{ dataContact.whatsapp }}</p>
+            <p class="m-0 ms-3 text-bebas text-start">{{ dataContact.whatsapp }}</p>
           </div>
         </a>
       </div>
       <div class="col-12 col-md-6 col-lg-3 mt-3">
         <a class="link-black-blue" href="mailto:{{ dataContact.email }}">
-          <div class="content-data text-center h-100">
+          <div class="content-data text-center h-100" data-aos="fade-up" data-aos-delay="300">
             <div class="icon">
-              <i class='bx bx-envelope display-1'></i>
+              <i class='bx bx-envelope bx-lg'></i>
             </div>
-            <p class="m-0 text-bebas">{{ dataContact.email }}</p>
+            <p class="m-0 ms-3 text-bebas text-start">{{ dataContact.email }}</p>
           </div>
         </a>
       </div>
       <div class="col-12 mt-5">
-        <p class="text-center">
+        <p class="text-center" data-aos="fade-up" data-aos-delay="0">
           {{ dataContact.description }}
         </p>
       </div>
     </div>
     {% endif %}
-    <h1 class="text-bebas display-4 text-blue text-center mt-5">CONTACTANOS</h1>
-    <div class="form mt-5">
-      <form id="contactForm" action="{% url 'generales_app:contact-mail' %}" method="post" role="form">
+    <h1 class="text-bebas display-4 text-blue text-center mt-3" data-aos="fade-up" data-aos-delay="0">CONTACTANOS</h1>
+    <div class="form mt-3 mt-md-5">
+      <form id="contactForm" action="{% url 'generales_app:contact-mail' %}" method="post" role="form" data-aos="fade-up" data-aos-delay="0">
         {% csrf_token %}
         <div class="row">
           <div class="col-12 col-md-4 mb-3">

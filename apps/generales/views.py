@@ -17,7 +17,8 @@ class HomeView(TemplateView):
             logo = Logo.objects.get(active=True)
         except Logo.DoesNotExist:
             logo = None
-        sliderHome = SliderHome.objects.filter(active=True)
+        sliderHomeDesktop = SliderHome.objects.filter(active=True, mobile=False)
+        sliderHomeMobile = SliderHome.objects.filter(active=True, mobile=True)
         brands = Brand.objects.filter(active=True)
         try:
             galleryHome = GalleryHome.objects.get(active=True)
@@ -28,7 +29,8 @@ class HomeView(TemplateView):
         socialNetworks = SocialNetwork.objects.filter(active=True)
         context = {
             'logo': logo,
-            'sliderHome': sliderHome,
+            'sliderHomeDesktop': sliderHomeDesktop,
+            'sliderHomeMobile': sliderHomeMobile,
             'brands': brands,
             'galleryHome': galleryHome,
             'videos': videos,

@@ -157,13 +157,18 @@ class SliderHome(Base):
     image = models.ImageField(
         'Imagen',
         upload_to='slider-home/',
-        help_text='Imagen para el Slider de la Página Principal (USAR IMAGENES CON LA MISMA RELACION. RECOMENDADO 1920x700)'
+        help_text='Imagen para el Slider de la Página Principal (USAR IMAGENES CON LA MISMA RELACION. RECOMENDADO, Desktop: 1920x700 Mobile: 1024x1300)'
     )
     link = models.URLField(
         'Enlace Destino',
         blank=True,
         null=True,
         help_text='Url de la pagina destino al hacer click'
+    )
+    mobile = models.BooleanField(
+        'Imagen para Mobile',
+        default=False,
+        help_text='Marcar para usar en la version Mobile. Desmarcar para usar en la version Desktop'
     )
     active = models.BooleanField(
         'Activo',

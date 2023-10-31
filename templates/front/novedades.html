@@ -1,7 +1,7 @@
 {% extends 'front/layout.html' %}
 {% load static %}
 
-{% block title %}Inicio{% endblock title %}
+{% block title %}Novedades{% endblock title %}
 
 {% block stylesheet %}
 <link rel="stylesheet" href="{% static 'front/assets/css/novedades.css' %}">
@@ -17,12 +17,12 @@
 
 {% include 'front/components/titulo-interna.html' with tituloInterna="NOVEDADES" %}
 
-<div class="novedades py-5">
-  <div class="container py-5">
+<div class="novedades pt-3 pt-md-5">
+  <div class="container">
     <div class="row">
       {% for news in newsList %}
-      <div class="col-6 col-md-4 mb-5">
-        <div class="card w-100 h-100">
+      <div class="col-12 col-md-4 mb-3 mb-md-5">
+        <div class="card w-100 h-100" data-aos="fade-up" data-aos-delay="0">
           <div class="content-img">
             <img src="{{ news.image.url }}" class="card-img" alt="...">
           </div>

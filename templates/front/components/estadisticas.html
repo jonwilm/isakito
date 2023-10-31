@@ -1,9 +1,9 @@
-<div class="estadisticas py-5">
-  <div class="container py-5">
-    <h1 class="text-bebas display-4 text-white text-center mb-5">ESTADÍSTICAS</h1>
+<div class="estadisticas py-3 py-md-5">
+  <div class="container">
+    <h1 class="text-bebas display-4 text-white text-center mb-3" data-aos="fade-up">ESTADÍSTICAS</h1>
     <div class="content-estadisticas">
       {% for statistic in statistics %}
-      <div class="item">
+      <div class="item" data-aos="fade-up" data-aos-delay="{{ forloop.counter }}00">
         <div class="data">{{ statistic.data }}</div>
         <div class="title">{{ statistic.title }}</div>
       </div>

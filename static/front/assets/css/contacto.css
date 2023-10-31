@@ -1,8 +1,11 @@
 .contacto .content-data {
-  box-shadow: 2px 2px 15px 2px var(--blue);
-  margin: 0 1rem 0 1rem;
-  padding: 1rem;
-  border-radius: 1rem;
+  /* box-shadow: 2px 2px 15px 2px var(--blue); */
+  /* margin: 0 1rem 0 1rem; */
+  /* padding: 1rem; */
+  /* border-radius: 1rem; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .contacto .form .form-control {
   border: 1px solid var(--blue);

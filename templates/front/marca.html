@@ -1,7 +1,7 @@
 {% extends 'front/layout.html' %}
 {% load static %}
 
-{% block title %}Inicio{% endblock title %}
+{% block title %}{{ brand.name }}{% endblock title %}
 
 {% block stylesheet %}
 <link rel="stylesheet" href="{% static 'libs/slick-slider/slick.css' %}">
@@ -20,17 +20,17 @@
 {% include 'front/components/titulo-interna.html' %}
 
 {% if sliderBrand %}
-<div class="slider slider-marca">
-  <div id="sliderMarca" class="carousel slide carousel-fade" data-bs-ride="carousel">
-    <!-- <div class="carousel-indicators mb-0 mb-sm-3">
-      <button type="button" data-bs-target="#sliderMarca" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#sliderMarca" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#sliderMarca" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div> -->
-    <div class="carousel-inner">
+<div class="slider slider-marca" data-aos="fade-in" data-aos-delay="0">
+  <div id="sliderMarca" class="carousel slide carousel-fade" data-bs-ride="carousel" style="height: 75vh;">
+    <div class="carousel-indicators mb-0 mb-sm-3">
       {% for slide in sliderBrand %}
-      <div class="carousel-item {% if forloop.first %}active{% endif %}">
-        <img src="{{ slide.image.url }}" class="d-block w-100" alt="slide.title">
+        <button type="button" data-bs-target="#sliderMarca" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="true" aria-label="Slide {{ forloop.counter }}"></button>
+      {% endfor %}
+    </div>
+    <div class="carousel-inner h-100">
+      {% for slide in sliderBrand %}
+      <div class="carousel-item h-100 {% if forloop.first %}active{% endif %}">
+        <img src="{{ slide.image.url }}" class="d-block w-100 h-100" alt="{{ slide.title }}" style="object-fit: cover; object-position: center;">
       </div>
       {% endfor %}
     </div>
@@ -46,16 +46,19 @@
 </div>
 {% endif %}
 
-<div class="marca py-5">
+<div class="marca py-3 py-md-5">
   <div class="container">
-    <p class="text-center mb-5">{{ brand.description }}</p>
-    <h2 class="text-bebas text-center text-blue display-6 mb-5">PRODUCTOS</h2>
-    <div class="slider-productos">
+    <p class="text-center mb-3 mb-md-5" data-aos="fade-up" data-aos-delay="0">{{ brand.description }}</p>
+    <h2 class="text-bebas text-center text-blue display-6 mb-5" data-aos="fade-up" data-aos-delay="0">PRODUCTOS</h2>
+    <div class="slider-productos" data-aos="fade-up" data-aos-delay="0">
       {% for product in products %}
       <div>
         <a href="{% url 'productos_app:producto' product.slug %}">
           <img src="{{ product.image }}" alt="{{ product.title }}">
         </a>
+        <div class="titulo-producto text-center">
+          {{ product.title }}
+        </div>
       </div>
       {% endfor %}
     </div>

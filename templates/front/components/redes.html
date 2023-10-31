@@ -1,7 +1,7 @@
-<div class="redes-sociales py-5">
-  <div class="container py-5">
-    <h1 class="text-bebas display-4 text-white text-center mb-5">SIGUENOS</h1>
-    <div class="content-redes">
+<div class="redes-sociales py-3 py-md-5">
+  <div class="container">
+    <h1 class="text-bebas display-4 text-white text-center mb-3" data-aos="fade-up">SIGUENOS</h1>
+    <div class="content-redes" data-aos="fade-up">
       {% for socialNetwork in socialNetworks %}
       <a href="{{ socialNetwork.url }}" target="_blank" rel="noopener noreferrer">
         <div class="rrss {{ socialNetwork.social_network|lower }}">

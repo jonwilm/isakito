@@ -1,7 +1,7 @@
 {% extends 'front/layout.html' %}
 {% load static %}
 
-{% block title %}Inicio{% endblock title %}
+{% block title %}{{ news.title }}{% endblock title %}
 
 {% block stylesheet %}
 <link rel="stylesheet" href="{% static 'front/assets/css/novedades.css' %}">
@@ -17,18 +17,18 @@
 
 {% include 'front/components/titulo-interna.html' %}
 
-<div class="novedad py-5">
-  <div class="container py-5">
+<div class="novedad py-3 py-md-5">
+  <div class="container">
     <div class="row">
       <div class="col-12">
         <div class="box-content">
           <div class="content-img">
-            <img src="{{ news.image.url }}" alt="">
+            <img src="{{ news.image.url }}" alt="" data-aos="fade-right" data-aos-delay="0">
           </div>
-          <h2 class="text-bebas text-blue display-6 mb-0">{{ news.title }}</h2>
-          <h3 class="fs-3 fw-bold mb-3">{{ news.subtitle }}</h3>
-          <h5 class="fs-5 mb-3">{{ news.date_created|date:"D, d M Y" }}</h5>
-          <div id="content">{{ news.content|safe }}</div>
+          <h2 class="text-bebas text-blue display-6 mb-0" data-aos="fade-left" data-aos-delay="100">{{ news.title }}</h2>
+          <h3 class="fs-3 fw-bold mb-3" data-aos="fade-left" data-aos-delay="200">{{ news.subtitle }}</h3>
+          <p class="small fw-bold mb-3" data-aos="fade-left" data-aos-delay="300">{{ news.date_created|date:"D, d M Y" }}</p>
+          <div id="content" data-aos="fade-in" data-aos-delay="400">{{ news.content|safe }}</div>
         </div>
       </div>
     </div>

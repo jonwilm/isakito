@@ -21,10 +21,9 @@
 
 .novedad .content-img {
   position: relative;
-  width: 50%;
-  padding-bottom: 28.12%;
+  width: 100%;
+  padding-bottom: 56.24%;
   overflow: hidden;
-  float: left;
   margin: 0 1.5rem 1rem 0;
 }
 .novedad .content-img img {
@@ -35,4 +34,14 @@
   left: 0;
   object-fit: cover;
   object-position: center;
+}
+@media (min-width: 768px) {
+  .novedad .content-img {
+    position: relative;
+    width: 50%;
+    padding-bottom: 28.12%;
+    overflow: hidden;
+    float: left;
+    margin: 0 1.5rem 1rem 0;
+  }
 }
