@@ -1,0 +1,71 @@
+{% extends 'front/layout.html' %}
+{% load static %}
+
+{% block title %}{{ brand.name }}{% endblock title %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'front/assets/css/puntos-de-venta.css' %}">
+{% endblock stylesheet %}
+
+{% block css %}
+
+{% endblock css %}
+
+
+{% block content %}
+{% include 'front/components/navbar.html' %}
+
+{% include 'front/components/titulo-interna.html' with tituloInterna="PUNTOS DE VENTA" %}
+
+<div class="puntos-de-venta py-3 py-md-5">
+  <div class="container">
+    <div id="mapa" class="w-100"></div>
+    <!-- <iframe
+      width="600"
+      height="450"
+      style="border:0"
+      loading="lazy"
+      allowfullscreen
+      referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps/embed/v1/place?key={{ KEYMAPS }}&q=Space+Needle,Seattle+WA">
+    </iframe> -->
+  </div>
+</div>
+
+{% include 'front/components/estadisticas.html' %}
+
+{% include 'front/components/newsletter.html' %}
+
+{% include 'front/components/redes.html' %}
+
+{% endblock %}
+
+{% block js %}
+<script>
+  $(window).ready(function() {
+
+  })
+</script>
+<script async src="https://maps.googleapis.com/maps/api/js?key={{ KEYMAPS }}&callback=initMap"></script>
+  <script>
+    function initMap() {
+      var latitud = {% if service.lat %}{{ service.lat }}{% else %}0{% endif %}
+      var longitud = {% if service.lng %}{{ service.lng }}{% else %}0{% endif %}
+      coord = {
+        lng: longitud,
+        lat: latitud
+      }
+      generarMapa(coord)
+    }
+    function generarMapa(coord) {
+      var mapa = new google.maps.Map(document.getElementById("mapa"), {
+        zoom: 15,
+        center: new google.maps.LatLng(coord.lat, coord.lng)
+      })
+      marcador = new google.maps.Marker({
+        map: mapa,
+        position: new google.maps.LatLng(coord.lat, coord.lng)
+      })
+    }
+  </script>
+{% endblock js %}

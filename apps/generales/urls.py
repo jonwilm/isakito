@@ -21,6 +21,11 @@ urlpatterns = [
         name='contacto',
     ),
     path(
+        'puntos-de-venta',
+        views.PointOfSaleView.as_view(),
+        name='puntos-de-venta',
+    ),
+    path(
         'sendmail',
         views.MailContact,
         name='contact-mail',

@@ -83,6 +83,25 @@ class ContactView(TemplateView):
         return context
 
 
+class PointOfSaleView(TemplateView):
+    template_name = 'front/puntos-de-venta.html'
+
+    def get_context_data(self, **kwargs):
+        try:
+            logo = Logo.objects.get(active=True)
+        except Logo.DoesNotExist:
+            logo = None
+        statistics = Statistic.objects.filter(active=True)
+        socialNetworks = SocialNetwork.objects.filter(active=True)
+        context = {
+            'KEYMAPS': settings.KEYMAPS,
+            'logo': logo,
+            'statistics': statistics,
+            'socialNetworks': socialNetworks,
+        }
+        return context
+
+
 def MailContact(request):
     if request.method == "POST":
         full_name = request.POST['full_name']
