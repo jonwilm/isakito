@@ -20,15 +20,15 @@
 <div class="puntos-de-venta py-3 py-md-5">
   <div class="container">
     <div id="mapa" class="w-100"></div>
-    <!-- <iframe
+    <iframe
       width="600"
       height="450"
       style="border:0"
       loading="lazy"
       allowfullscreen
       referrerpolicy="no-referrer-when-downgrade"
-      src="https://www.google.com/maps/embed/v1/place?key={{ KEYMAPS }}&q=Space+Needle,Seattle+WA">
-    </iframe> -->
+      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDhiBhFNXWt_01zzAxBrOJ_fPF3uznKvzk&q=Space+Needle,Seattle+WA">
+    </iframe>
   </div>
 </div>
 
@@ -46,7 +46,7 @@
 
   })
 </script>
-<script async src="https://maps.googleapis.com/maps/api/js?key={{ KEYMAPS }}&callback=initMap"></script>
+<!-- <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZjvnY0GtZxL-bmhj6J32jSMxsBT8Rzm4&callback=initMap"></script> -->
   <script>
     function initMap() {
       var latitud = {% if service.lat %}{{ service.lat }}{% else %}0{% endif %}
