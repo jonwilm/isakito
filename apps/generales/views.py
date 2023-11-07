@@ -1,3 +1,4 @@
+import requests
 from django.conf import settings
 from django.views.generic import TemplateView
 from django.core.mail import EmailMultiAlternatives
@@ -94,9 +95,13 @@ class PointOfSaleView(TemplateView):
         pointsOfSale = PointOfSale.objects.filter(active=True)
         statistics = Statistic.objects.filter(active=True)
         socialNetworks = SocialNetwork.objects.filter(active=True)
+        url = 'https://maps.google.com/maps/api/geocode/json?address=Washington&key=AIzaSyDZjvnY0GtZxL-bmhj6J32jSMxsBT8Rzm4'
+        res = requests.get(url)
+        response = res.json()
         context = {
             'KEYMAPS': settings.KEYMAPS,
             'logo': logo,
+            'response': response,
             'pointsOfSale': pointsOfSale,
             'statistics': statistics,
             'socialNetworks': socialNetworks,

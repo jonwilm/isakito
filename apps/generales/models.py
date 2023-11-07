@@ -338,7 +338,7 @@ class PointOfSale(Base):
     def save(self, *args, **kwargs):
         super(PointOfSale, self).save(*args, **kwargs)
         if not self.lat and not self.lng:
-            url = 'https://maps.google.com/maps/api/geocode/json?address='+self.address+'&key=AIzaSyDZjvnY0GtZxL-bmhj6J32jSMxsBT8Rzm4'
+            url = 'https://maps.google.com/maps/api/geocode/json?address=Washington&key=AIzaSyDZjvnY0GtZxL-bmhj6J32jSMxsBT8Rzm4'
             response = requests.get(url)
             print(response.json())
     #         self.lat = response.json()['results'][0]['geometry']['location']['lat']
