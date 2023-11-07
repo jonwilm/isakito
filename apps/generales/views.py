@@ -5,7 +5,7 @@ from django.template.loader import render_to_string
 from django.contrib import messages
 from django.shortcuts import redirect
 
-from .models import Logo, SliderHome, GalleryHome, SocialNetwork, Videos, Statistic, Us, Contact
+from .models import Logo, PointOfSale, SliderHome, GalleryHome, SocialNetwork, Videos, Statistic, Us, Contact
 from apps.productos.models import Brand
 
 
@@ -91,11 +91,13 @@ class PointOfSaleView(TemplateView):
             logo = Logo.objects.get(active=True)
         except Logo.DoesNotExist:
             logo = None
+        pointsOfSale = PointOfSale.objects.filter(active=True)
         statistics = Statistic.objects.filter(active=True)
         socialNetworks = SocialNetwork.objects.filter(active=True)
         context = {
             'KEYMAPS': settings.KEYMAPS,
             'logo': logo,
+            'pointsOfSale': pointsOfSale,
             'statistics': statistics,
             'socialNetworks': socialNetworks,
         }

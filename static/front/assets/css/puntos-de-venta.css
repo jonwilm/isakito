@@ -1,0 +1,12 @@
+.puntos-de-venta .point-of-sale {
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: all 0.5s;
+}
+.puntos-de-venta .point-of-sale:hover {
+  background-color: rgba(var(--blue-rgb), 0.1);
+}
+.puntos-de-venta #mapa {
+  width: 100%;
+  height: 50vh;
+}

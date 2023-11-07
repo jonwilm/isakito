@@ -1,3 +1,4 @@
+import requests
 from django.contrib.gis.db import models
 from django.db import transaction
 from django.utils.html import mark_safe
@@ -278,6 +279,12 @@ class Videos(Base):
         return str(self.title)
 
 
+LOCALITY = [
+    ('CABA', 'CABA'),
+    ('GBA', 'GBA'),
+    ('INT', 'INTERIOR'),
+]
+
 class PointOfSale(Base):
     name = models.CharField(
         'Nombre',
@@ -296,11 +303,20 @@ class PointOfSale(Base):
     )
     locality = models.CharField(
         'Localidad',
-        max_length=255
-    )
-    coord = models.CharField(
-        'Coordenadas',
         max_length=255,
+        choices=LOCALITY
+    )
+    lat = models.CharField(
+        'Latitud',
+        max_length=255,
+        help_text='Si se deja en blanco se guardara el valor segun la dirección, de lo contrario se guardara el valor ingresado manualmente',
+        blank=True,
+        null=True,
+    )
+    lng = models.CharField(
+        'Longitud',
+        max_length=255,
+        help_text='Si se deja en blanco se guardara el valor segun la dirección, de lo contrario se guardara el valor ingresado manualmente',
         blank=True,
         null=True,
     )
@@ -318,6 +334,16 @@ class PointOfSale(Base):
     class Meta():
         verbose_name = 'Punto de Venta'
         verbose_name_plural = 'Puntos de Venta'
+
+    def save(self, *args, **kwargs):
+        super(PointOfSale, self).save(*args, **kwargs)
+        if not self.lat and not self.lng:
+            url = 'https://maps.google.com/maps/api/geocode/json?address='+self.address+'&key=AIzaSyDZjvnY0GtZxL-bmhj6J32jSMxsBT8Rzm4'
+            response = requests.get(url)
+            print(response.json())
+    #         self.lat = response.json()['results'][0]['geometry']['location']['lat']
+    #         self.lng = response.json()['results'][0]['geometry']['location']['lng']
+    #         self.save()
 
     def __str__(self):
         return str(self.name)

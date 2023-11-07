@@ -94,7 +94,7 @@ class PointOfSaleAdmin(admin.ModelAdmin):
     # formfield_overrides = {
     #     models.PointField: {"widget": GooglePointFieldWidget}
     # }
-    list_display = ('name', 'coord', 'active')
+    list_display = ('name', 'address', 'active')
     exclude = ('model_state',)
     ordering = ('-active',)
 
