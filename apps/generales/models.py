@@ -199,6 +199,12 @@ class Us(Base):
         null=True,
         help_text='Titulo del apartado (Ej. Quienes Somos, Misión, Visión, etc...)'
     )
+    image = models.ImageField(
+        'Imagen',
+        upload_to='Nosotros/',
+        blank=True,
+        null=True,
+    )
     text = models.TextField(
         'Texto Descriptivo',
         blank=True,
@@ -320,11 +326,6 @@ class PointOfSale(Base):
         blank=True,
         null=True,
     )
-    # coordinates = models.PointField(
-    #     'Ubicacion en mapa',
-    #     blank=True,
-    #     null=True,
-    # )
     active = models.BooleanField(
         'Active',
         default=True,
@@ -334,16 +335,6 @@ class PointOfSale(Base):
     class Meta():
         verbose_name = 'Punto de Venta'
         verbose_name_plural = 'Puntos de Venta'
-
-    def save(self, *args, **kwargs):
-        super(PointOfSale, self).save(*args, **kwargs)
-        if not self.lat and not self.lng:
-            url = 'https://maps.google.com/maps/api/geocode/json?address=Washington&key=AIzaSyDZjvnY0GtZxL-bmhj6J32jSMxsBT8Rzm4'
-            response = requests.get(url)
-            print(response.json())
-    #         self.lat = response.json()['results'][0]['geometry']['location']['lat']
-    #         self.lng = response.json()['results'][0]['geometry']['location']['lng']
-    #         self.save()
 
     def __str__(self):
         return str(self.name)
