@@ -93,7 +93,7 @@
   }
   
   function codeAddress() {
-    var address = $('address141').text();
+    var address = $('#address141').text();
     console.log(address)
     geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == 'OK') {
