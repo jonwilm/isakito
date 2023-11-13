@@ -81,7 +81,7 @@
     })
     marker = new google.maps.Marker({
       map: map,
-      position: new google.maps.LatLng(latitud, longitud)
+      position: new google.maps.LatLng({ lat: latitud, lng: longitud })
     })
   }
   
