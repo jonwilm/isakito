@@ -31,7 +31,8 @@
       <div class="col-12 col-md-6">
         <div class="content-points">
           {% for pos in pointsOfSale %}
-          <div class="point-of-sale {{ pos.locality }} Todas" {% if pos.lat or pos.lng %}data-lat="{{ pos.lat }}" data-lng="{{ pos.lng }}"{% endif %}">
+          <!-- <div class="point-of-sale {{ pos.locality }} Todas" {% if pos.lat or pos.lng %}data-lat="{{ pos.lat }}" data-lng="{{ pos.lng }}"{% endif %}"> -->
+          <div class="point-of-sale {{ pos.locality }} Todas" onclick="posMarker({% if pos.lat and pos.lng %}{{ pos.lat }}, {{ pos.lng }}{% endif %})">
             <h5 class="fw-bold m-0 title-pos">{{ pos.name }}</h5>
             <p class="small m-0">{{ pos.address }}</p>
             <!-- <p id="{{ pos.id }}" class="small m-0">{{ pos.address }}</p> -->
