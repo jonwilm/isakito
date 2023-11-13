@@ -15,6 +15,10 @@
   height: 30vh;
   margin-top: 1.5rem;
 }
+.filter-pos:focus {
+  background-color: var(--blue);
+  color: var(--white);
+}
 @media (min-width: 768px) {
   .puntos-de-venta .content-points {
     max-height: 50vh;
