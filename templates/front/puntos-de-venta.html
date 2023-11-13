@@ -126,5 +126,9 @@
   {% for pos in pointsOfSale %}
     $('#data-table').append('<tr><td>{{pos.id}}</td><td id="lat{{pos.id}}"></td><td id="lng{{pos.id}}"></td></tr>')
   {% endfor %}
+
+  $(window).ready(function() {
+    codeAddress()
+  })
 </script>
 {% endblock js %}
