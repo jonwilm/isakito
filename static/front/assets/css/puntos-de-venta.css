@@ -1,3 +1,7 @@
+.puntos-de-venta .content-points {
+  max-height: 40vh;
+  overflow-y: auto;
+}
 .puntos-de-venta .point-of-sale {
   cursor: pointer;
   padding: 0.5rem;
@@ -8,5 +12,16 @@
 }
 .puntos-de-venta #mapa {
   width: 100%;
-  height: 50vh;
+  height: 30vh;
+  margin-top: 1.5rem;
+}
+@media (min-width: 768px) {
+  .puntos-de-venta .content-points {
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+  .puntos-de-venta #mapa {
+    height: 50vh;
+    margin-top: 0;
+  }
 }

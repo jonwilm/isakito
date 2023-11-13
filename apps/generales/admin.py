@@ -85,18 +85,16 @@ class VideosAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     ordering = ('-active',)
 
 
-# class PointOfSaleResource(resources.ModelResource):
-#     class Meta:
-#         model: PointOfSale
+class PointOfSaleResource(resources.ModelResource):
+    class Meta:
+        model: PointOfSale
 
 
-class PointOfSaleAdmin(admin.ModelAdmin):
-    # formfield_overrides = {
-    #     models.PointField: {"widget": GooglePointFieldWidget}
-    # }
+class PointOfSaleAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('name', 'address', 'active')
+    list_filter = ('locality',)
     exclude = ('model_state',)
-    ordering = ('-active',)
+    ordering = ('-active', 'name',)
 
 
 class GalleryHomeResource(resources.ModelResource):
@@ -105,7 +103,7 @@ class GalleryHomeResource(resources.ModelResource):
 
 
 class GalleryHomeAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ('id', 'show_img_V1', 'show_img_V2', 'show_img_C', 'show_img_H1', 'show_img_H2', 'active')
+    list_display = ('id', 'show_img_1', 'show_img_2', 'show_img_3', 'show_img_4', 'show_img_5', 'active')
     exclude = ('model_state',)
     ordering = ('-active',)
 

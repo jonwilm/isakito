@@ -92,16 +92,12 @@ class PointOfSaleView(TemplateView):
             logo = Logo.objects.get(active=True)
         except Logo.DoesNotExist:
             logo = None
-        pointsOfSale = PointOfSale.objects.filter(active=True)
+        pointsOfSale = PointOfSale.objects.filter(active=True).order_by('name')
         statistics = Statistic.objects.filter(active=True)
         socialNetworks = SocialNetwork.objects.filter(active=True)
-        url = 'https://maps.google.com/maps/api/geocode/json?address=Washington&key=AIzaSyDZjvnY0GtZxL-bmhj6J32jSMxsBT8Rzm4'
-        res = requests.get(url)
-        response = res.json()
         context = {
             'KEYMAPS': settings.KEYMAPS,
             'logo': logo,
-            'response': response,
             'pointsOfSale': pointsOfSale,
             'statistics': statistics,
             'socialNetworks': socialNetworks,

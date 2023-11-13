@@ -4,6 +4,8 @@ from django.db import transaction
 from django.utils.html import mark_safe
 from apps.automatic_crud.models import BaseModel as Base
 
+import PIL
+from PIL import Image
 
 
 class Logo(Base):
@@ -296,13 +298,13 @@ class PointOfSale(Base):
         'Nombre',
         max_length=255
     )
-    image = models.ImageField(
-        'Imagen',
-        upload_to='puntos-de-venta/',
-        help_text='Imagen o Logo del Punto de Venta',
-        blank=True,
-        null=True,
-    )
+    # image = models.ImageField(
+    #     'Imagen',
+    #     upload_to='puntos-de-venta/',
+    #     help_text='Imagen o Logo del Punto de Venta',
+    #     blank=True,
+    #     null=True,
+    # )
     address = models.CharField(
         'Direccion',
         max_length=255
@@ -315,14 +317,14 @@ class PointOfSale(Base):
     lat = models.CharField(
         'Latitud',
         max_length=255,
-        help_text='Si se deja en blanco se guardara el valor segun la dirección, de lo contrario se guardara el valor ingresado manualmente',
+        # help_text='Si se deja en blanco se guardara el valor segun la dirección, de lo contrario se guardara el valor ingresado manualmente',
         blank=True,
         null=True,
     )
     lng = models.CharField(
         'Longitud',
         max_length=255,
-        help_text='Si se deja en blanco se guardara el valor segun la dirección, de lo contrario se guardara el valor ingresado manualmente',
+        # help_text='Si se deja en blanco se guardara el valor segun la dirección, de lo contrario se guardara el valor ingresado manualmente',
         blank=True,
         null=True,
     )
@@ -340,61 +342,68 @@ class PointOfSale(Base):
         return str(self.name)
 
 
+def compressImgGallery(imagen):
+    image = Image.open(imagen)
+    mywidth = 1000
+    myheight = (1000*image.size[1])//image.size[0]
+    image = image.resize((mywidth, myheight), PIL.Image.ANTIALIAS)
+    return image
+
 class GalleryHome(Base):
-    imageV1 = models.ImageField(
-        'Imagen Vertical 1',
+    image1 = models.ImageField(
+        'Imagen 1',
         upload_to='gallery-home/',
-        help_text='Imagen en Formato Vertical. Recomendado 800x1400',
+        help_text='Imagen 1. Recomendado 1000x1320 o respetar relacion-aspecto para que la imagen no se corte',
     )
-    linkV1 = models.URLField(
-        'Enlace Destino Imagen Vertical 1',
+    link1 = models.URLField(
+        'Enlace Destino Imagen 1',
         blank=True,
         null=True,
-        help_text='Url de la pagina destino al hacer click'
+        help_text='Url de la pagina destino'
     )
-    imageV2 = models.ImageField(
-        'Imagen Vertical 2',
+    image2 = models.ImageField(
+        'Imagen 2',
         upload_to='gallery-home/',
-        help_text='Imagen en Formato Vertical. Recomendado 800x1400',
+        help_text='Imagen 2. Recomendado 1000x660 o respetar relacion-aspecto para que la imagen no se corte',
     )
-    linkV2 = models.URLField(
-        'Enlace Destino Imagen Vertical 2',
+    link2 = models.URLField(
+        'Enlace Destino Imagen 2',
         blank=True,
         null=True,
-        help_text='Url de la pagina destino al hacer click'
+        help_text='Url de la pagina destino'
     )
-    imageH1 = models.ImageField(
-        'Imagen Horizontal 1',
+    image3 = models.ImageField(
+        'Imagen 3',
         upload_to='gallery-home/',
-        help_text='Imagen en Formato Horizontal. Recomendado 1400x550',
+        help_text='Imagen 3. Recomendado 1000x660 o respetar relacion-aspecto para que la imagen no se corte',
     )
-    linkH1 = models.URLField(
-        'Enlace Destino Imagen Horizontal 1',
+    link3 = models.URLField(
+        'Enlace Destino Imagen 3',
         blank=True,
         null=True,
-        help_text='Url de la pagina destino al hacer click'
+        help_text='Url de la pagina destino'
     )
-    imageH2 = models.ImageField(
-        'Imagen Horizontal 2',
+    image4 = models.ImageField(
+        'Imagen 4',
         upload_to='gallery-home/',
-        help_text='Imagen en Formato Horizontal. Recomendado 1400x550',
+        help_text='Imagen 4. Recomendado 1000x660 o respetar relacion-aspecto para que la imagen no se corte',
     )
-    linkH2 = models.URLField(
-        'Enlace Destino Imagen Horizontal 2',
+    link4 = models.URLField(
+        'Enlace Destino Imagen 4',
         blank=True,
         null=True,
-        help_text='Url de la pagina destino al hacer click'
+        help_text='Url de la pagina destino'
     )
-    imageC = models.ImageField(
-        'Imagen Central',
+    image5 = models.ImageField(
+        'Imagen 5',
         upload_to='gallery-home/',
-        help_text='Imagen Central. Recomendado 800x550',
+        help_text='Imagen 5. Recomendado 1000x660 o respetar relacion-aspecto para que la imagen no se corte',
     )
-    linkC = models.URLField(
-        'Enlace Destino Imagen Central',
+    link5 = models.URLField(
+        'Enlace Destino Imagen 5',
         blank=True,
         null=True,
-        help_text='Url de la pagina destino al hacer click'
+        help_text='Url de la pagina destino'
     )
     active = models.BooleanField(
         'Active',
@@ -407,6 +416,21 @@ class GalleryHome(Base):
         verbose_name_plural = 'Galeria Home'
 
     def save(self, *args, **kwargs):
+        # if self.image1:
+        #     image = compressImgGallery(self.image1)
+        #     image.save(self.image1.path)
+        # if self.image2:
+        #     image = compressImgGallery(self.image2)
+        #     image.save(self.image2.path)
+        # if self.image3:
+        #     image = compressImgGallery(self.image3)
+        #     image.save(self.image3.path)
+        # if self.image4:
+        #     image = compressImgGallery(self.image4)
+        #     image.save(self.image4.path)
+        # if self.image5:
+        #     image = compressImgGallery(self.image5)
+        #     image.save(self.image5.path)
         if not self.active:
             return super(GalleryHome, self).save(*args, **kwargs)
         with transaction.atomic():
@@ -416,28 +440,28 @@ class GalleryHome(Base):
     def __str__(self):
         return str(self.id)
 
-    def show_img_V1(self):
+    def show_img_1(self):
         return mark_safe(
-            u'<img src="%s" height="75" />' % self.imageV1.url)
-    show_img_V1.short_description = 'Imagen Vertical 1'
-    show_img_V1.allow_tags = True
-    def show_img_V2(self):
+            u'<img src="%s" height="75" />' % self.image1.url)
+    show_img_1.short_description = 'Imagen 1'
+    show_img_1.allow_tags = True
+    def show_img_2(self):
         return mark_safe(
-            u'<img src="%s" height="75" />' % self.imageV2.url)
-    show_img_V2.short_description = 'Imagen Vertical 2'
-    show_img_V2.allow_tags = True
-    def show_img_H1(self):
+            u'<img src="%s" height="75" />' % self.image2.url)
+    show_img_2.short_description = 'Imagen 2'
+    show_img_2.allow_tags = True
+    def show_img_3(self):
         return mark_safe(
-            u'<img src="%s" height="75" />' % self.imageH1.url)
-    show_img_H1.short_description = 'Imagen Horizontal 1'
-    show_img_H1.allow_tags = True
-    def show_img_H2(self):
+            u'<img src="%s" height="75" />' % self.image3.url)
+    show_img_3.short_description = 'Imagen 3'
+    show_img_3.allow_tags = True
+    def show_img_4(self):
         return mark_safe(
-            u'<img src="%s" height="75" />' % self.imageH2.url)
-    show_img_H2.short_description = 'Imagen Horizontal 2'
-    show_img_H2.allow_tags = True
-    def show_img_C(self):
+            u'<img src="%s" height="75" />' % self.image4.url)
+    show_img_4.short_description = 'Imagen 4'
+    show_img_4.allow_tags = True
+    def show_img_5(self):
         return mark_safe(
-            u'<img src="%s" height="75" />' % self.imageC.url)
-    show_img_C.short_description = 'Imagen Central'
-    show_img_C.allow_tags = True
+            u'<img src="%s" height="75" />' % self.image5.url)
+    show_img_5.short_description = 'Imagen 5'
+    show_img_5.allow_tags = True
