@@ -128,7 +128,9 @@
   {% endfor %}
 
   $(window).ready(function() {
-    codeAddress()
+    setTimeout(() => {
+      codeAddress()
+    }, 5000);
   })
 </script>
 {% endblock js %}
