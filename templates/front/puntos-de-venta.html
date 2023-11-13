@@ -33,7 +33,7 @@
           {% for pos in pointsOfSale %}
           <div class="point-of-sale {{ pos.locality }} Todas" {% if pos.lat or pos.lng %}data-lat="{{ pos.lat }}" data-lng="{{ pos.lng }}"{% endif %}">
             <h5 class="fw-bold m-0 title-pos">{{ pos.name }}</h5>
-            <p id="address{{ pos.id }}" class="small m-0">{{ pos.address }}</p>
+            <p id="{{ pos.id }}" class="small m-0">{{ pos.address }}</p>
           </div>
           {% endfor %}
         </div>
@@ -92,13 +92,13 @@
     }
   }
   
-  function codeAddress() {
-    var address = $('#address141').text();
+  function codeAddress(id) {
+    var address = $('#'+id).text();
     console.log(address)
     geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == 'OK') {
-        console.log(results[0].geometry.location.lat)
-        console.log(results[0].geometry.location.lng)
+        $('#lat'+id).text(results[0].geometry.location)
+        console.log(results[0].geometry.location)
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
       }
@@ -125,13 +125,13 @@
     $(this).addClass('active')
   })
 
-  {% for pos in pointsOfSale %}
-    $('#data-table').append('<tr><td>{{pos.id}}</td><td id="lat{{pos.id}}"></td><td id="lng{{pos.id}}"></td></tr>')
-  {% endfor %}
-
+  
   $(window).ready(function() {
     setTimeout(() => {
-      codeAddress()
+    {% for pos in pointsOfSale %}
+      $('#data-table').append('<tr><td>{{pos.id}}</td><td id="lat{{pos.id}}"></td><td id="lng{{pos.id}}"></td></tr>')
+      codeAddress({{pos.id}})
+    {% endfor %}
     }, 5000);
   })
 </script>
