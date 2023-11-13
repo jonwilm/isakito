@@ -31,15 +31,24 @@
       <div class="col-12 col-md-6">
         <div class="content-points">
           {% for pos in pointsOfSale %}
-          <div class="point-of-sale {{ pos.locality }} Todas" onclick="posMarker({% if pos.lat or pos.lng %}{{ pos.lat }}, {{ pos.lng }}{% endif %})">
+          <div class="point-of-sale {{ pos.locality }} Todas" {% if pos.lat or pos.lng %}data-lat="{{ pos.lat }}" data-lng="{{ pos.lng }}"{% endif %}">
             <h5 class="fw-bold m-0 title-pos">{{ pos.name }}</h5>
-            <p class="small m-0">{{ pos.address }}</p>
+            <p id="address{{ pos.id }}" class="small m-0">{{ pos.address }}</p>
           </div>
           {% endfor %}
         </div>
       </div>
       <div class="col-12 col-md-6">
         <div id="mapa"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <table>
+          <tbody id="data-table">
+
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -58,11 +67,13 @@
   (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
   ({key: "{{ KEYMAPS }}", v: "weekly"});
   
+  var geocoder
   var map
   var marker
   
   async function initMap(latitud, longitud) {
     const { Map } = await google.maps.importLibrary("maps");
+    geocoder = new google.maps.Geocoder()
     map = new Map(document.getElementById("mapa"), {
       center: { lat: latitud, lng: longitud },
       zoom: 16,
@@ -81,7 +92,28 @@
     }
   }
   
+  function codeAddress() {
+    var address = document.getElementById('address141').value;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == 'OK') {
+        console.log(results[0].geometry.location)
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+  
   initMap(-34.600368, -58.375449);
+  
+  $('.point-of-sale').on('click', function() {
+    let latitud = $(this).attr('data-lat')
+    let longitud = $(this).attr('data-lng')
+    if (latitud && longitud) {
+      const LatLng = { lat: latitud, lng: longitud };
+      marker.setPosition(LatLng)
+      map.setCenter(LatLng)
+    }
+  })
   
   $('.filter-pos').on('click', function() {
     var locality = $(this).attr('data-locality')
@@ -90,5 +122,9 @@
     $('.filter-pos').removeClass('active')
     $(this).addClass('active')
   })
+
+  {% for pos in pointsOfSale %}
+    $('#data-table').append('<tr><td>{{pos.id}}</td><td id="lat{{pos.id}}"></td><td id="lng{{pos.id}}"></td></tr>')
+  {% endfor %}
 </script>
 {% endblock js %}
