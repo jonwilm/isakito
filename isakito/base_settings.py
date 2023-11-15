@@ -165,4 +165,3 @@ EMAIL_USE_TLS = True
 # EMAIL_CONTACT_ISAKITO = ''
 EMAIL_CONTACT_ISAKITO = 'jparedes84@gmail.com'
 
-KEYMAPS = "AIzaSyDhiBhFNXWt_01zzAxBrOJ_fPF3uznKvzk"

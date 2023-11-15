@@ -18,3 +18,5 @@ MEDIA_ROOT = 'media/'
 SITE_URL = 'nuevo.isakitoweb.com.ar'
 MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
+
+KEYMAPS = "AIzaSyDhiBhFNXWt_01zzAxBrOJ_fPF3uznKvzk"
