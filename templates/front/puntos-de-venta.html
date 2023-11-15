@@ -72,40 +72,46 @@
   // var geocoder
   var map
   var marker
+  var allMarkers = []
   
   async function initMap(latitud, longitud) {
     const { Map } = await google.maps.importLibrary("maps");
     map = new Map(document.getElementById("mapa"), {
       center: { lat: latitud, lng: longitud },
-      zoom: 16,
+      zoom: 18,
     })
-    // geocoder = new google.maps.Geocoder()
-    marker = new google.maps.Marker({
-      map: map,
-      position: new google.maps.LatLng(latitud, longitud)
-    })
+    markers('')
+  }
+  
+  function markers(filter) {
+    allMarkers = []
+    if (filter == '') {
+      {% for pos in pointsOfSale %}
+      marker = new google.maps.Marker({
+        map: map,
+        position: new google.maps.LatLng({{ pos.lat }}, {{ pos.lng }})
+      })
+      allMarkers.push(marker);
+      {% endfor %}
+    } else {
+      {% for pos in pointsOfSale %}
+      {% if pos.locality == filter %}
+      marker = new google.maps.Marker({
+        map: map,
+        position: new google.maps.LatLng({{ pos.lat }}, {{ pos.lng }})
+      })
+      {% endif %}
+      allMarkers.push(marker);
+      {% endfor %}
+    }
   }
   
   function posMarker(latitud, longitud) {
     if (latitud && longitud) {
       const myLatLng = { lat: latitud, lng: longitud };
-      marker.setPosition(myLatLng)
       map.setCenter(myLatLng)
     }
   }
-  
-  // function codeAddress(id) {
-  //   var address = $('#'+id).text();
-  //   console.log(address)
-  //   geocoder.geocode( { 'address': address}, function(results, status) {
-  //     if (status == 'OK') {
-  //       $('#lat'+id).text(results[0].geometry.location)
-  //       console.log(results[0].geometry.location)
-  //     } else {
-  //       alert('Geocode was not successful for the following reason: ' + status);
-  //     }
-  //   });
-  // }
   
   initMap(-34.600368, -58.375449);
   
@@ -125,16 +131,7 @@
     $('.point-of-sale.'+locality).removeClass('d-none')
     $('.filter-pos').removeClass('active')
     $(this).addClass('active')
+    markers(locality)
   })
-
-  
-  // $(window).ready(function() {
-  //   setTimeout(() => {
-  //   {% for pos in pointsOfSale %}
-  //     $('#data-table').append('<tr><td>{{pos.id}}</td><td id="lat{{pos.id}}"></td><td id="lng{{pos.id}}"></td></tr>')
-  //     codeAddress({{pos.id}})
-  //   {% endfor %}
-  //   }, 5000);
-  // })
 </script>
 {% endblock js %}
