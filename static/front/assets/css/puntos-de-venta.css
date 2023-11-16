@@ -1,3 +1,20 @@
+.puntos-de-venta .content-points::-webkit-scrollbar {
+  width: 0.5rem !important;
+}
+.puntos-de-venta .content-points::-webkit-scrollbar-track {
+  background: rgba(var(--blue-rgb), 0.2) !important;
+  border-radius: 1rem !important;
+}
+.puntos-de-venta .content-points::-webkit-scrollbar-thumb {
+  background: rgba(var(--blue-rgb), 0.6) !important;
+  border-radius: 1rem !important;
+}
+.puntos-de-venta .content-points::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(var(--blue-rgb), 0.6) !important;
+}
+.puntos-de-venta .content-points::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--blue-rgb), 1) !important;
+}
 .puntos-de-venta .content-points {
   max-height: 40vh;
   overflow-y: auto;
@@ -6,6 +23,9 @@
   cursor: pointer;
   padding: 0.5rem;
   transition: all 0.5s;
+}
+.puntos-de-venta .point-of-sale.active {
+  background-color: rgba(var(--blue-rgb), 0.5) !important;
 }
 .puntos-de-venta .point-of-sale:hover {
   background-color: rgba(var(--blue-rgb), 0.1);

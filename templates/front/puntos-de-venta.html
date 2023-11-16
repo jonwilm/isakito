@@ -32,7 +32,7 @@
         <div class="content-points">
           {% for pos in pointsOfSale %}
           <!-- <div class="point-of-sale {{ pos.locality }} Todas" {% if pos.lat or pos.lng %}data-lat="{{ pos.lat }}" data-lng="{{ pos.lng }}"{% endif %}"> -->
-          <div class="point-of-sale {{ pos.locality }} Todas" onclick="posMarker({% if pos.lat and pos.lng %}{{ pos.lat }}, {{ pos.lng }}{% endif %})">
+          <div class="point-of-sale {{ pos.locality }} Todas" onclick="posMarker({% if pos.lat and pos.lng %}{{ pos.lat }}, {{ pos.lng }}{% endif %})" {% if pos.lat or pos.lng %}data-lat="{{ pos.lat }}" data-lng="{{ pos.lng }}"{% endif %}">
             <h5 class="fw-bold m-0 title-pos">{{ pos.name }}</h5>
             <p class="small m-0">{{ pos.address }}</p>
             <!-- <p id="{{ pos.id }}" class="small m-0">{{ pos.address }}</p> -->
@@ -69,9 +69,7 @@
   (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
   ({key: "{{ KEYMAPS }}", v: "weekly"});
   
-  // var geocoder
   var map
-  var marker
   var dataMarkers = []
   var allMarkers = []
   var infoWindow
@@ -84,13 +82,14 @@
       zoom: 4,
     })
     infoWindow = new google.maps.InfoWindow();
-    markers('')
+    markers()
   }
   
   function posMarker(latitud, longitud) {
     if (latitud && longitud) {
       const myLatLng = { lat: latitud, lng: longitud };
       map.setCenter(myLatLng)
+      map.setZoom(18)
     }
   }
   
@@ -101,9 +100,10 @@
     let longitud = $(this).attr('data-lng')
     if (latitud && longitud) {
       const LatLng = { lat: latitud, lng: longitud };
-      marker.setPosition(LatLng)
       map.setCenter(LatLng)
     }
+    $('.point-of-sale').removeClass('active')
+    $(this).addClass('active')
   })
   
   $('.filter-pos').on('click', function() {
@@ -127,24 +127,15 @@
       id: {{ pos.id }},
       lat: '{{ pos.lat }}',
       lng: '{{ pos.lng }}',
-      content: '',
+      content: '<h5>{{ pos.name }}</h5><p class="fw-bold">{{ pos.address }}</p>',
       locality: '{{ pos.locality }}',
     },
   {% endfor %}
   ]
 
-  async function markers(filter) {
-    // for (let i = 0; i < dataMarkers.length; i++) {
-    //   marker = new google.maps.Marker({
-    //     position: new google.maps.LatLng(dataMarkers[i].lat, dataMarkers[i].lng),
-    //     map: map,
-    //   });
-    //   allMarkers.push(marker)
-    // }
-    
-    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+  function markers() {    
     dataMarkers.forEach(({ lat, lng, content }, i) => {
-      marker = new AdvancedMarkerElement({
+      const marker = new google.maps.Marker({
         position: new google.maps.LatLng(lat, lng),
         map: map,
         title: content,
@@ -152,10 +143,18 @@
 
       marker.addListener("click", ({ domEvent, latLng }) => {
         const { target } = domEvent;
-
+        map.setCenter(marker.position)
+        map.setZoom(18)
         infoWindow.close();
         infoWindow.setContent(marker.title);
         infoWindow.open(marker.map, marker);
+        $('.point-of-sale').each(function() {
+          console.log(lat + ', ' + $(this).attr('data-lat'))
+          if ((lat == $(this).attr('data-lat')) && (lng == $(this).attr('data-lng'))) {
+            $('.point-of-sale').removeClass('active')
+            $(this).addClass('active')
+          }
+        })
       })
     })
   }
