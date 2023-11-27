@@ -67,6 +67,11 @@ class SliderBrand(Base):
         verbose_name='Marca',
         on_delete=models.CASCADE,
     )
+    mobile = models.BooleanField(
+        'Imagen para Mobile',
+        default=False,
+        help_text='Marcar para usar en la version Mobile. Desmarcar para usar en la version Desktop'
+    )
     title = models.CharField(
         'Título',
         max_length=150,

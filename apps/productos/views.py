@@ -35,14 +35,16 @@ class BrandView(DetailView):
           logo = Logo.objects.get(active=True)
         except Logo.DoesNotExist:
           logo = None
-        sliderBrand = SliderBrand.objects.filter(brand=brand, active=True)
+        sliderBrandDesktop = SliderBrand.objects.filter(brand=brand, active=True, mobile=False)
+        sliderBrandMobile = SliderBrand.objects.filter(brand=brand, active=True, mobile=True)
         products = Product.objects.filter(brand=brand, active=True)
         statistics = Statistic.objects.filter(active=True)
         socialNetworks = SocialNetwork.objects.filter(active=True)
         context = {
             'brand': brand,
             'logo': logo,
-            'sliderBrand': sliderBrand,
+            'sliderBrandDesktop': sliderBrandDesktop,
+            'sliderBrandMobile': sliderBrandMobile,
             'products': products,
             'statistics': statistics,
             'socialNetworks': socialNetworks,

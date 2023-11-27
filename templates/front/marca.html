@@ -19,26 +19,56 @@
 
 {% include 'front/components/titulo-interna.html' %}
 
-{% if sliderBrand %}
-<div class="slider slider-marca" data-aos="fade-in" data-aos-delay="0">
-  <div id="sliderMarca" class="carousel slide carousel-fade" data-bs-ride="carousel" style="height: 75vh;">
+{% if sliderBrandDesktop %}
+<div class="slider slider-marca desktop" data-aos="fade-in">
+  <div id="sliderBrandDesktop" class="carousel slide carousel-fade" data-bs-ride="carousel" style="height: 75vh;">
     <div class="carousel-indicators mb-0 mb-sm-3">
-      {% for slide in sliderBrand %}
-        <button type="button" data-bs-target="#sliderMarca" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="true" aria-label="Slide {{ forloop.counter }}"></button>
+      {% for slide in sliderBrandDesktop %}
+      <button type="button" data-bs-target="#sliderBrandDesktop" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="true" aria-label="Slide {{ forloop.counter }}"></button>
       {% endfor %}
     </div>
     <div class="carousel-inner h-100">
-      {% for slide in sliderBrand %}
+      {% for slide in sliderBrandDesktop %}
       <div class="carousel-item h-100 {% if forloop.first %}active{% endif %}">
-        <img src="{{ slide.image.url }}" class="d-block w-100 h-100" alt="{{ slide.title }}" style="object-fit: cover; object-position: center;">
+        <a class="" href="{% if slide.link == None %}#{% else %}{{ slide.link }}{% endif %}">
+          <img src="{{ slide.image.url }}" class="d-block w-100 h-100" alt="slide.title" style="object-fit: cover; object-position: center;">
+        </a>
       </div>
       {% endfor %}
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#sliderMarca" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#sliderBrandDesktop" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#sliderMarca" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#sliderBrandDesktop" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+{% endif %}
+{% if sliderBrandMobile %}
+<div class="slider slider-marca mobile" data-aos="fade-in">
+  <div id="sliderBrandMobile" class="carousel slide carousel-fade" data-bs-ride="carousel" style="height: 75vh;">
+    <div class="carousel-indicators mb-0 mb-sm-3">
+      {% for slide in sliderBrandMobile %}
+      <button type="button" data-bs-target="#sliderBrandMobile" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="true" aria-label="Slide {{ forloop.counter }}"></button>
+      {% endfor %}
+    </div>
+    <div class="carousel-inner h-100">
+      {% for slide in sliderBrandMobile %}
+      <div class="carousel-item h-100 {% if forloop.first %}active{% endif %}">
+        <a class="" href="{% if slide.link == None %}#{% else %}{{ slide.link }}{% endif %}">
+          <img src="{{ slide.image.url }}" class="d-block w-100 h-100" alt="slide.title" style="object-fit: cover; object-position: center;">
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#sliderBrandMobile" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#sliderBrandMobile" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>

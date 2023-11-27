@@ -1,3 +1,17 @@
+.slider-marca.mobile {
+  display: block;
+}
+.slider-marca.desktop {
+  display: none;
+}
+@media (orientation: landscape) {
+  .slider-marca.mobile {
+    display: none;
+  }
+  .slider-marca.desktop {
+    display: block;
+  }
+}
 .slider-productos .slick-track {
   display: flex;
   align-items: center;
