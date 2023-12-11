@@ -25,7 +25,9 @@
         <div class="content" data-aos="fade-up" data-aos-delay="0">
           <a href="{% url 'productos_app:marca' brand.slug %}">
             <div class="content-img">
+              {% if brand.logo %}
               <img src="{{ brand.logo.url }}" alt="" class="w-75">
+              {% endif %}
             </div>
             <h2 class="text-bebas text-center text-blue fs-3">{{ brand.name }}</h2>
           </a>

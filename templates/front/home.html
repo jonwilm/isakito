@@ -82,7 +82,9 @@
       {% for brand in brands %}
       <div>
         <a href="{% url 'productos_app:marca' brand.slug %}">
+          {% if brand.logo %}
           <img src="{{ brand.logo.url }}" alt="{{ brand.name }}">
+          {% endif %}
         </a>
       </div>
       {% endfor %}
