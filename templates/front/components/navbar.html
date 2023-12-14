@@ -35,7 +35,7 @@
               <a class="nav-link btn-underline-from-center {% if itemActive == 'contacto' %}active{% endif %}" href="{% url 'generales_app:contacto' %}">CONTACTO</a>
             </li>
             <li class="nav-item mt-3 mt-lg-0">
-              <a class="nav-link btn-underline-from-center" href="#">CATALOGO</a>
+              <a class="nav-link btn-underline-from-center" target="_blank" href="{% if catalogo %}{{ catalogo.url }}{% endif %}">CATALOGO</a>
             </li>
           </ul>
         </div>

@@ -478,8 +478,8 @@ class Catalogo(Base):
     )
 
     class Meta():
-        verbose_name = 'Catalogos'
-        verbose_name_plural = 'Catalogoss'
+        verbose_name = 'Catalogo'
+        verbose_name_plural = 'Catalogos'
 
     def save(self, *args, **kwargs):
         if not self.active:
