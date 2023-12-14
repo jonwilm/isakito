@@ -5,7 +5,7 @@ DEBUG = True
 
 # Production
 # -------------------------------------
-ALLOWED_HOSTS = ['isakitoweb.com.ar, nuevo.isakitoweb.com.ar']
+ALLOWED_HOSTS = ['isakitoweb.com.ar']
 
 
 # Static files (CSS, JavaScript, Images)
