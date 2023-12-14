@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView, DetailView
 
 from .models import News
-from apps.generales.models import Logo, SocialNetwork, Statistic
+from apps.generales.models import Logo, SocialNetwork, Statistic, Catalogo
 
 
 class NewsListView(TemplateView):
@@ -12,11 +12,16 @@ class NewsListView(TemplateView):
           logo = Logo.objects.get(active=True)
         except Logo.DoesNotExist:
           logo = None
+        try:
+            catalogo = Catalogo.objects.get(active=True)
+        except Catalogo.DoesNotExist:
+            catalogo = None
         newsList = News.objects.filter(active=True).order_by('date_created')
         statistics = Statistic.objects.filter(active=True)
         socialNetworks = SocialNetwork.objects.filter(active=True)
         context = {
             'logo': logo,
+            'catalogo': catalogo,
             'newsList': newsList,
             'statistics': statistics,
             'socialNetworks': socialNetworks,
@@ -35,11 +40,16 @@ class NewsView(DetailView):
           logo = Logo.objects.get(active=True)
         except Logo.DoesNotExist:
           logo = None
+        try:
+            catalogo = Catalogo.objects.get(active=True)
+        except Catalogo.DoesNotExist:
+            catalogo = None
         statistics = Statistic.objects.filter(active=True)
         socialNetworks = SocialNetwork.objects.filter(active=True)
         context = {
             'news': news,
             'logo': logo,
+            'catalogo': catalogo,
             'statistics': statistics,
             'socialNetworks': socialNetworks,
         }

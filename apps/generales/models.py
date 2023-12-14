@@ -465,3 +465,28 @@ class GalleryHome(Base):
             u'<img src="%s" height="75" />' % self.image5.url)
     show_img_5.short_description = 'Imagen 5'
     show_img_5.allow_tags = True
+
+
+class Catalogo(Base):
+    url = models.URLField(
+        'Url Catalogo'
+    )
+    active = models.BooleanField(
+        'Active',
+        default=False,
+        help_text='Activar para mostrar (Solo una URL puede estar activa)'
+    )
+
+    class Meta():
+        verbose_name = 'Catalogos'
+        verbose_name_plural = 'Catalogoss'
+
+    def save(self, *args, **kwargs):
+        if not self.active:
+            return super(Catalogo, self).save(*args, **kwargs)
+        with transaction.atomic():
+            Catalogo.objects.filter(active=True).update(active=False)
+            return super(Catalogo, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return str(self.url)

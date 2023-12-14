@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView, DetailView
 
 from .models import Brand, SliderBrand, Product, ImagesProduct
-from apps.generales.models import Logo, SocialNetwork, Statistic
+from apps.generales.models import Logo, SocialNetwork, Statistic, Catalogo
 
 
 class BrandsView(TemplateView):
@@ -12,11 +12,16 @@ class BrandsView(TemplateView):
           logo = Logo.objects.get(active=True)
         except Logo.DoesNotExist:
           logo = None
+        try:
+            catalogo = Catalogo.objects.get(active=True)
+        except Catalogo.DoesNotExist:
+            catalogo = None
         brands = Brand.objects.filter(active=True)
         statistics = Statistic.objects.filter(active=True)
         socialNetworks = SocialNetwork.objects.filter(active=True)
         context = {
             'logo': logo,
+            'catalogo': catalogo,
             'brands': brands,
             'statistics': statistics,
             'socialNetworks': socialNetworks,
@@ -35,6 +40,10 @@ class BrandView(DetailView):
           logo = Logo.objects.get(active=True)
         except Logo.DoesNotExist:
           logo = None
+        try:
+            catalogo = Catalogo.objects.get(active=True)
+        except Catalogo.DoesNotExist:
+            catalogo = None
         sliderBrandDesktop = SliderBrand.objects.filter(brand=brand, active=True, mobile=False)
         sliderBrandMobile = SliderBrand.objects.filter(brand=brand, active=True, mobile=True)
         products = Product.objects.filter(brand=brand, active=True)
@@ -43,6 +52,7 @@ class BrandView(DetailView):
         context = {
             'brand': brand,
             'logo': logo,
+            'catalogo': catalogo,
             'sliderBrandDesktop': sliderBrandDesktop,
             'sliderBrandMobile': sliderBrandMobile,
             'products': products,
@@ -63,12 +73,17 @@ class ProductView(DetailView):
           logo = Logo.objects.get(active=True)
         except Logo.DoesNotExist:
           logo = None
+        try:
+            catalogo = Catalogo.objects.get(active=True)
+        except Catalogo.DoesNotExist:
+            catalogo = None
         imagesProduct = ImagesProduct.objects.filter(product=product, active=True)
         statistics = Statistic.objects.filter(active=True)
         socialNetworks = SocialNetwork.objects.filter(active=True)
         context = {
             'product': product,
             'logo': logo,
+            'catalogo': catalogo,
             'imagesProduct': imagesProduct,
             'statistics': statistics,
             'socialNetworks': socialNetworks,

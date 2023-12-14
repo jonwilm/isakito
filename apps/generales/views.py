@@ -6,7 +6,7 @@ from django.template.loader import render_to_string
 from django.contrib import messages
 from django.shortcuts import redirect
 
-from .models import Logo, PointOfSale, SliderHome, GalleryHome, SocialNetwork, Videos, Statistic, Us, Contact
+from .models import Logo, PointOfSale, SliderHome, GalleryHome, SocialNetwork, Videos, Statistic, Us, Contact, Catalogo
 from apps.productos.models import Brand
 
 
@@ -18,6 +18,10 @@ class HomeView(TemplateView):
             logo = Logo.objects.get(active=True)
         except Logo.DoesNotExist:
             logo = None
+        try:
+            catalogo = Catalogo.objects.get(active=True)
+        except Catalogo.DoesNotExist:
+            catalogo = None
         sliderHomeDesktop = SliderHome.objects.filter(active=True, mobile=False)
         sliderHomeMobile = SliderHome.objects.filter(active=True, mobile=True)
         brands = Brand.objects.filter(active=True)
@@ -30,6 +34,7 @@ class HomeView(TemplateView):
         socialNetworks = SocialNetwork.objects.filter(active=True)
         context = {
             'logo': logo,
+            'catalogo': catalogo,
             'sliderHomeDesktop': sliderHomeDesktop,
             'sliderHomeMobile': sliderHomeMobile,
             'brands': brands,
@@ -49,11 +54,16 @@ class UsView(TemplateView):
             logo = Logo.objects.get(active=True)
         except Logo.DoesNotExist:
             logo = None
+        try:
+            catalogo = Catalogo.objects.get(active=True)
+        except Catalogo.DoesNotExist:
+            catalogo = None
         items = Us.objects.filter(active=True)
         statistics = Statistic.objects.filter(active=True)
         socialNetworks = SocialNetwork.objects.filter(active=True)
         context = {
             'logo': logo,
+            'catalogo': catalogo,
             'items': items,
             'statistics': statistics,
             'socialNetworks': socialNetworks,
@@ -70,6 +80,10 @@ class ContactView(TemplateView):
         except Logo.DoesNotExist:
             logo = None
         try:
+            catalogo = Catalogo.objects.get(active=True)
+        except Catalogo.DoesNotExist:
+            catalogo = None
+        try:
             dataContact = Contact.objects.get(active=True)
         except Contact.DoesNotExist:
             dataContact = None
@@ -77,6 +91,7 @@ class ContactView(TemplateView):
         socialNetworks = SocialNetwork.objects.filter(active=True)
         context = {
             'logo': logo,
+            'catalogo': catalogo,
             'dataContact': dataContact,
             'statistics': statistics,
             'socialNetworks': socialNetworks,
@@ -92,12 +107,17 @@ class PointOfSaleView(TemplateView):
             logo = Logo.objects.get(active=True)
         except Logo.DoesNotExist:
             logo = None
+        try:
+            catalogo = Catalogo.objects.get(active=True)
+        except Catalogo.DoesNotExist:
+            catalogo = None
         pointsOfSale = PointOfSale.objects.filter(active=True).order_by('name')
         statistics = Statistic.objects.filter(active=True)
         socialNetworks = SocialNetwork.objects.filter(active=True)
         context = {
             'KEYMAPS': settings.KEYMAPS,
             'logo': logo,
+            'catalogo': catalogo,
             'pointsOfSale': pointsOfSale,
             'statistics': statistics,
             'socialNetworks': socialNetworks,
